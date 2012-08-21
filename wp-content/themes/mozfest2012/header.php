@@ -4,7 +4,7 @@
 		<meta charset="<?php bloginfo('charset'); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title></title>
-		<link rel="stylesheet" href="/wp-content/themes/mozfest2012/media/css/core.css">
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/media/css/core.css">
 	</head>
 	<body>
 		<div id="header">
