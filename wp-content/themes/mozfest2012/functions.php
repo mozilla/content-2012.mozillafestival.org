@@ -1,5 +1,97 @@
 <?php
 
+function mf2012_empty_function () {
+	// Do nothing
+}
+
+// Add support for custom headers.
+$custom_header_support = array(
+	// The default header text color.
+	'default-text-color' => '000',
+	// Turn off header text
+	'header-test' => false,
+	// The height and width of our custom header.
+	'width' => apply_filters('mf2012_header_image_width', 1600),
+	'height' => apply_filters('mf2012_header_image_height', 500),
+	// Support flexible heights.
+	'flex-height' => true,
+	// Support flexible widths
+	'flex-width' => true,
+	// Random image rotation by default.
+	'random-default' => true,
+	// Callback for styling the header.
+	'wp-head-callback' => 'mf2012_header_style',
+	'admin-head-callback'    => 'mf2012_empty_function',
+	'admin-preview-callback' => 'mf2012_empty_function',
+);
+
+function mf2012_header_style () {
+	if (is_front_page()) {
+		$header_image = get_header_image();
+		if ($header_image) {
+			if (function_exists('get_custom_header')) {
+				$header = get_custom_header();
+				$header_image_width  = $header->width;
+				$header_image_height = $header->height;
+				$header_text = get_post($header->attachment_id)->post_title;
+				$header_color = get_header_textcolor();
+			} else {
+				$header_text = '';
+				$header_color = '';
+			}
+
+			if ($header_color == 'blank') {
+				$header_color = '';
+			} else {
+				if (strlen($header_color) == 6) {
+					$r = hexdec(substr($header_color, 0, 2));
+					$g = hexdec(substr($header_color, 2, 2));
+					$b = hexdec(substr($header_color, 4, 2));
+				} else {
+					$r = hexdec(substr($header_color, 0, 1));
+					$g = hexdec(substr($header_color, 1, 1));
+					$b = hexdec(substr($header_color, 2, 1));
+				}
+				$header_rgb = array($r, $g, $b);
+			}
+			?>
+			<style>
+			@media screen and (min-width: 840px) {
+				#carousel {
+					background-image: url(<?php echo $header_image; ?>);
+					<?php if (!empty($header_color)): ?>background-color: #<?php echo $header_color; ?>;
+				<?php endif; ?>}
+				#carousel .constrained {
+					height: <?php echo $header_image_height; ?>px;
+				}
+				<?php if (!empty($header_color) && !empty($header_text)): ?>#carousel .constrained::after {
+					content: "<?php echo $header_text; ?>";
+					color: #<?php echo $header_color; ?>;
+					color: rgba(<?php echo implode(', ', $header_rgb); ?>, 0.75);
+				}
+			<?php endif; ?>}
+			</style>
+			<?php
+		}
+	}
+}
+
+add_theme_support('custom-header', $custom_header_support);
+
+if (!function_exists('get_custom_header')) {
+	// This is all for compatibility with versions of WordPress prior to 3.4.
+	define('HEADER_TEXTCOLOR', $custom_header_support['default-text-color']);
+	define('HEADER_IMAGE', '');
+	define('HEADER_IMAGE_WIDTH', $custom_header_support['width']);
+	define('HEADER_IMAGE_HEIGHT', $custom_header_support['height']);
+	add_custom_image_header(
+		$custom_header_support['wp-head-callback'],
+		$custom_header_support['admin-head-callback'],
+		$custom_header_support['admin-preview-callback']
+	);
+	add_custom_background();
+}
+
 function mf2012_register_sidebars () {
 	register_sidebar(array(
 		'id' => 'default',
