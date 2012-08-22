@@ -2,6 +2,13 @@
 @blue: #00283A;
 @slate: #4D4D4D;
 @nav-border: ~"solid 1px #E5E5E6";
+@background: #EAF1F1;
+
+.raised (@bg: #FFF) {
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+	background: @bg;
+}
 
 @import "_fonts";
 
@@ -14,6 +21,15 @@ body {
 	font-size: 13px;
 	color: @slate;
 }
+
+.constrained {
+	max-width: 940px;
+	margin: 0 auto;
+	padding: 0 20px;
+	overflow: hidden;
+}
+
+/* ===[ Standard Bits and Pieces ]=========================================== */
 
 h1, h2, h3, h4 {
 	font-weight: bold;
@@ -37,13 +53,25 @@ h4 {
 	font-size: 1.08em;
 }
 
-.constrained {
-	max-width: 940px;
-	margin: 0 auto;
-	padding: 0 20px;
-	overflow: hidden;
-	// background: rgba(255,0,0,0.05);
+p,
+li {
+	margin: 1em 0 0;
+
+	&.center {
+		text-align: center;
+	}
+
+	&.right {
+		text-align: right;
+	}
 }
+
+a {
+	color: @green;
+	text-decoration: none;
+}
+
+/* ===[ Menus ]============================================================== */
 
 .menu {
 	margin: 0;
@@ -57,13 +85,15 @@ h4 {
 		float: left;
 		border-bottom: @nav-border;
 
+		// This could be done with :last-child, but we also need to support
+		// :nth-last-child(>1), and it looks weird when some of it works but
+		// not the rest.
 		&:nth-last-child(1) {
 			border-bottom: none;
 		}
 	}
 
 	a {
-		text-decoration: none;
 		display: block;
 		padding: 6px 0;
 		color: inherit;
@@ -78,19 +108,8 @@ h4 {
 	}
 }
 
-a {
-	color: @green;
-	text-decoration: none;
-
-	&.button {
-		background: @green;
-		border-radius: 3px;
-		text-align: center;
-		color: #FFF;
-		padding: 10px;
-	}
-}
-
 @import "_header";
 @import "_content";
 @import "_footer";
+
+@import "_components";
