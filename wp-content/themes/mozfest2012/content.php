@@ -1,14 +1,8 @@
-<?php
-/**
- * The default template for displaying content
- *
- * @package WordPress
- * @subpackage Twenty_Eleven
- * @since Twenty Eleven 1.0
- */
-?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<h2><?php the_title(); ?></h2>
+	<?php if (is_single() || is_page()): ?>
+		<h2><?php the_title(); ?></h2>
+	<?php else: ?>
+		<h3><?php the_title(); ?></h3>
+	<?php endif; ?>
 	<?php the_content(); ?>
 </article>
