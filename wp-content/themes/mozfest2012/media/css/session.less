@@ -1,0 +1,68 @@
+@import "_mixins";
+
+body.single {
+	
+	#content-inner {
+
+		article {
+			padding-left: 160px;
+			position: relative;
+			min-height: 480px;
+
+			aside {
+				.raised;
+				margin: 50px 0 0 -160px;
+				padding: 1em;
+				overflow: hidden;
+
+				h3 {
+					margin: 0;
+					padding: 0;
+					float: left;
+					font-size: 1em;
+				}
+			}
+		}
+
+		.description {
+			font-size: 1.38em;
+		}
+
+		.vcard img {
+			.raised;
+			position: absolute;
+			top: 0;
+			left: 0;
+			border: solid 10px #FFF;
+		}
+
+		a:hover img,
+		a:focus img {
+			box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+		}
+
+		.vcard.organizer-2 img {
+			top: 160px;
+		}
+
+		.vcard.organizer-3 img {
+			top: 320px;
+		}
+
+		article section {
+			margin-top: 35px;
+			padding-top: 35px;
+			border-top: solid 1px #D5DBDB;
+
+			ul {
+				list-style: square;
+				margin: 0;
+				padding: 0 0 0 1.5em;
+
+				li {
+					margin-top: 0.5em;
+				}
+			}
+		}
+	}
+}

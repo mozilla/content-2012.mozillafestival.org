@@ -32,6 +32,14 @@ body {
 	color: #4d4d4d;
 }
 
+.constrained {
+	max-width: 940px;
+	margin: 0 auto;
+	padding: 0 20px;
+	overflow: hidden;
+}
+
+/* ===[ Standard Bits and Pieces ]=========================================== */
 h1,
 h2,
 h3,
@@ -57,13 +65,69 @@ h4 {
 	font-size: 1.08em;
 }
 
-.constrained {
-	max-width: 940px;
-	margin: 0 auto;
-	padding: 0 20px;
+p,
+li {
+	margin: 1em 0 0;
+}
+
+p.center,
+li.center {
+	text-align: center;
+}
+
+p.right,
+li.right {
+	text-align: right;
+}
+
+p.intro,
+li.intro {
+	font-size: 1.38em;
+}
+
+a {
+	color: #37b683;
+	text-decoration: none;
+}
+
+body.archive article {
+	margin-top: 50px;
+}
+
+article header {
+	margin-bottom: 25px;
+}
+
+aside.more {
+	margin: 50px -10px 0;
+	padding: 0 10px;
 	overflow: hidden;
 }
 
+aside.more section {
+	margin: 20px 20px 0 0;
+	width: 140px;
+	float: left;
+}
+
+aside.more section h3 {
+	font-size: 1.08em;
+}
+
+aside.more section ul {
+	margin: 0;
+	padding: 0 0 10px;
+	list-style: none;
+}
+
+aside.more section li.selected a {
+	background: #00283a;
+	color: #EEE;
+	padding: 3px 6px;
+	margin-left: -6px;
+}
+
+/* ===[ Menus ]============================================================== */
 .menu {
 	margin: 0;
 	padding: 0;
@@ -83,7 +147,6 @@ h4 {
 }
 
 .menu a {
-	text-decoration: none;
 	display: block;
 	padding: 6px 0;
 	color: inherit;
@@ -95,19 +158,6 @@ h4 {
 	margin-left: -13px;
 	padding-left: 10px;
 	background: #EAF1F1;
-}
-
-a {
-	color: #37b683;
-	text-decoration: none;
-}
-
-a.button {
-	background: #37b683;
-	border-radius: 3px;
-	text-align: center;
-	color: #FFF;
-	padding: 10px;
 }
 
 #header {
@@ -429,10 +479,29 @@ a.button {
 
 }
 
-#carousel {
-	border-bottom: solid 35px #00283A;
-	background: #000;
-	min-height: 100px;
+@media screen and (min-width: 840px) {
+	#carousel {
+	  border-bottom: solid 35px #00283A;
+	  background: #000000 50% 50% no-repeat;
+	  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
+	}
+
+	#carousel .constrained {
+	  position: relative;
+	}
+
+	#carousel .constrained::after {
+	  position: absolute;
+	  bottom: 50px;
+	  left: 20px;
+	  background: #ffffff url(assets/photo-caption.png) 1em 50% no-repeat;
+	  background-color: rgba(255, 255, 255, 0.8);
+	  padding: 0.8em 1em 0.8em 3.5em;
+	  border-radius: 3px;
+	  font-weight: bold;
+	  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	}
+
 }
 
 #content {
@@ -470,6 +539,13 @@ a.button {
 	margin-right: -320px;
 }
 
+@media screen and (min-width: 840px) {
+	body.home #sidebar {
+	  margin-top: -7.5em;
+	}
+
+}
+
 #sidebar section {
 	padding: 20px;
 	border-top: solid 1px #E5E5E6;
@@ -486,134 +562,6 @@ a.button {
 
 #sidebar section p {
 	margin: 1em 0 0;
-}
-
-ol.steps {
-	border-left: solid 10px #DDE4E4;
-	list-style: none;
-	margin: 50px 0 0 25px;
-	padding: 0 0 0 25px;
-	position: relative;
-	counter-reset: steps;
-}
-
-ol.steps > li {
-	background: #F5F5F5;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-	counter-increment: steps;
-	position: relative;
-	margin: 0 0 20px;
-	padding: 0 20px 30px;
-}
-
-ol.steps > li.empty {
-	padding-bottom: 0;
-}
-
-ol.steps > li:first-child::before,
-ol.steps > li:last-child::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: -35px;
-	width: 10px;
-	height: 35px;
-	background: #eaf1f1;
-}
-
-ol.steps > li:last-child::before {
-	top: 35px;
-	bottom: 0;
-	left: -35px;
-	height: auto;
-}
-
-ol.steps > li::after {
-	font-size: 1.11em;
-	content: counter(steps);
-	position: absolute;
-	top: 30px;
-	left: -30px;
-	width: 30px;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-	border-radius: 50%;
-	margin: -0.5em 0 0 -18px;
-	border: solid 3px #FFF;
-	color: #FFF;
-	background: #37B683;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-ol.steps h3 {
-	background: #FFF;
-	padding: 30px 20px;
-	margin: 0 -20px 30px;
-	border-bottom: solid 1px #DDDEDE;
-	border-radius: 5px 5px 0 0;
-}
-
-ol.steps > li.empty h3 {
-	margin-bottom: 0;
-	border-radius: 5px;
-}
-
-ol.steps ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-ol.steps ul li,
-ol.steps p,
-ol.steps pre {
-	margin: 20px 0 0;
-	position: relative;
-}
-
-ol.steps ul li::after,
-ol.steps p::after,
-ol.steps pre::after {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: -50px;
-	width: 10px;
-	height: 10px;
-	border: solid 3px #FFF;
-	border-radius: 50%;
-	background: #37B683;
-	margin: 0 0 0 -8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-ol.steps pre {
-	white-space: pre-wrap;
-	line-height: 1.75em;
-	margin: 0 0 0 15px;
-	padding: 20px 30px;
-	border-radius: 5px;
-	background: #FFF;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-ol.steps pre::before {
-	content: "";
-	position: absolute;
-	width: 15px;
-	height: 34px;
-	top: 18px;
-	right: 100%;
-	background: url(assets/pre-arrow.png);
-}
-
-ol.steps pre::after {
-	top: 26px;
-	left: -65px;
 }
 
 #footer {
@@ -691,5 +639,238 @@ ol.steps pre::after {
 	  float: none;
 	}
 
+}
+
+/* ===[ Buttons ]============================================================ */
+a.button,
+input.button,
+button {
+	background: #37b683;
+	border: none;
+	border-radius: 3px;
+	text-align: center;
+	color: #FFF;
+	font-size: inherit;
+	font-family: inherit;
+	cursor: pointer;
+	padding: 0.77em 1em;
+	margin: 0;
+}
+
+a.button:hover,
+input.button:hover,
+button:hover,
+a.button:focus,
+input.button:focus,
+button:focus {
+	box-shadow: 0 -2px 0 0 rgba(0, 0, 0, 0.05) inset, 0 12px 24px 2px rgba(255, 255, 255, 0.1) inset;
+}
+
+a.button:active,
+input.button:active,
+button:active {
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+a.button::-moz-focus-inner,
+input.button::-moz-focus-inner,
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+/* ===[ Sub-navigation ]===================================================== */
+nav.subnav {
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	background: #ffffff;
+	padding: 1em 1.5em;
+	overflow: hidden;
+}
+
+nav.subnav h1,
+nav.subnav h2,
+nav.subnav h3,
+nav.subnav h4,
+nav.subnav h5,
+nav.subnav p {
+	margin: 0;
+	padding: 0;
+	font-size: 1.11em;
+	line-height: 1.5em;
+	font-weight: bold;
+	float: left;
+}
+
+nav.subnav h1::after,
+nav.subnav h2::after,
+nav.subnav h3::after,
+nav.subnav h4::after,
+nav.subnav h5::after,
+nav.subnav p::after {
+	content: ":";
+}
+
+nav.subnav ul,
+nav.subnav li {
+	line-height: 1.05em;
+	float: left;
+	list-style: none;
+	margin: 0.35em 0;
+	padding: 0;
+}
+
+nav.subnav li {
+	margin: 0 0 0 0.75em;
+	padding: 0 0 0 0.75em;
+	border-left: solid 1px #4d4d4d;
+}
+
+nav.subnav li:first-child {
+	border: none;
+	padding: 0;
+}
+
+/* ===[ Panels ]============================================================= */
+.panel {
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	background: #f5f5f5;
+	position: relative;
+	margin: 0 0 1.5em;
+	padding: 2em 1.5em;
+}
+
+.panel.empty {
+	padding-bottom: 0;
+}
+
+/* ---[ Headers ]------------------------------------------------------------ */
+.panel .header,
+article.panel header,
+section.panel header {
+	background: #FFF;
+	padding: 2em 1.5em;
+	margin: -2em -1.5em 2em;
+	border-bottom: solid 1px #DDDEDE;
+	border-radius: 5px 5px 0 0;
+}
+
+.panel .header p,
+article.panel header p,
+section.panel header p {
+	font-size: 1.38em;
+	line-height: 1.67em;
+}
+
+.panel.empty .header,
+article.panel.empty header,
+section.panel.empty header {
+	border-radius: 5px;
+	margin-bottom: 0;
+}
+
+/* ---[ Footers ]------------------------------------------------------------ */
+.panel .footer,
+article.panel footer,
+section.panel footer {
+	background: #FFF;
+	padding: 1em 1.5em 2em;
+	margin: 2em -1.5em -2em;
+	border-top: solid 1px #DDDEDE;
+	border-radius: 0 0 5px 5px;
+}
+
+/* ===[ Steps ]============================================================== */
+ol.steps,
+ul.steps {
+	border-left: solid 10px #DDE4E4;
+	list-style: none;
+	margin: 50px 0 0 25px;
+	padding: 0 0 0 25px;
+	position: relative;
+	counter-reset: steps;
+}
+
+ol.steps  > li,
+ul.steps  > li {
+	counter-increment: steps;
+}
+
+ol.steps  > li:first-child::before,
+ul.steps  > li:first-child::before,
+ol.steps  > li:last-child::before,
+ul.steps  > li:last-child::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -35px;
+	width: 10px;
+	height: 35px;
+	background: #eaf1f1;
+}
+
+ol.steps  > li:last-child::before,
+ul.steps  > li:last-child::before {
+	top: 35px;
+	bottom: 0;
+	left: -35px;
+	height: auto;
+}
+
+ol.steps  > li::after,
+ul.steps  > li::after {
+	content: "";
+	font-size: 1.11em;
+	position: absolute;
+	top: 30px;
+	left: -30px;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 50%;
+	margin: -0.5em 0 0 -18px;
+	border: solid 3px #FFF;
+	color: #FFF;
+	background: #37b683;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+ol.steps ul,
+ul.steps ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+ol.steps ul li,
+ul.steps ul li,
+ol.steps p,
+ul.steps p {
+	position: relative;
+}
+
+ol.steps ul li::after,
+ul.steps ul li::after,
+ol.steps p::after,
+ul.steps p::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -50px;
+	width: 10px;
+	height: 10px;
+	border: solid 3px #FFF;
+	border-radius: 50%;
+	background: #37b683;
+	margin: 0 0 0 -8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+ol.steps > li::after {
+	content: counter(steps);
 }
 

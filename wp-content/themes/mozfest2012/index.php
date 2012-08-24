@@ -11,7 +11,9 @@ get_header();
 if (have_posts()) {
 	while (have_posts()) {
 		the_post();
-		get_template_part('content', get_post_format());
+		$type = get_post_format();
+		if (empty($type)) $type = get_post_type();
+		get_template_part('content', $type);
 	}
 } else {
 	get_template_part('content', 'missing');
