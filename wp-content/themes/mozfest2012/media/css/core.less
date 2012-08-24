@@ -4,12 +4,7 @@
 @nav-border: ~"solid 1px #E5E5E6";
 @background: #EAF1F1;
 
-.raised (@bg: #FFF) {
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgba(0,0,0,0.25);
-	background: @bg;
-}
-
+@import "_mixins";
 @import "_fonts";
 
 html,
@@ -64,11 +59,52 @@ li {
 	&.right {
 		text-align: right;
 	}
+
+	&.intro {
+		font-size: 1.38em;
+	}
 }
 
 a {
 	color: @green;
 	text-decoration: none;
+}
+
+body.archive article {
+	margin-top: 50px;
+}
+
+article header {
+	margin-bottom: 25px;
+}
+
+aside.more {
+	margin: 50px -10px 0;
+	padding: 0 10px;
+	overflow: hidden;
+
+	section {
+		margin: 20px 20px 0 0;
+		width: 140px;
+		float: left;
+
+		h3 {
+			font-size: 1.08em;
+		}
+
+		ul {
+			margin: 0;
+			padding: 0 0 10px;
+			list-style: none;
+		}
+
+		li.selected a {
+			background: @blue;
+			color: #EEE;
+			padding: 3px 6px;
+			margin-left: -6px;
+		}
+	}
 }
 
 /* ===[ Menus ]============================================================== */

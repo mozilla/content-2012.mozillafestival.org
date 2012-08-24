@@ -80,9 +80,51 @@ li.right {
 	text-align: right;
 }
 
+p.intro,
+li.intro {
+	font-size: 1.38em;
+}
+
 a {
 	color: #37b683;
 	text-decoration: none;
+}
+
+body.archive article {
+	margin-top: 50px;
+}
+
+article header {
+	margin-bottom: 25px;
+}
+
+aside.more {
+	margin: 50px -10px 0;
+	padding: 0 10px;
+	overflow: hidden;
+}
+
+aside.more section {
+	margin: 20px 20px 0 0;
+	width: 140px;
+	float: left;
+}
+
+aside.more section h3 {
+	font-size: 1.08em;
+}
+
+aside.more section ul {
+	margin: 0;
+	padding: 0 0 10px;
+	list-style: none;
+}
+
+aside.more section li.selected a {
+	background: #00283a;
+	color: #EEE;
+	padding: 3px 6px;
+	margin-left: -6px;
 }
 
 /* ===[ Menus ]============================================================== */

@@ -7,7 +7,13 @@ h3{font-size:1.38em;}
 h4{font-size:1.08em;}
 p,li{margin:1em 0 0;}p.center,li.center{text-align:center;}
 p.right,li.right{text-align:right;}
+p.intro,li.intro{font-size:1.38em;}
 a{color:#37b683;text-decoration:none;}
+body.archive article{margin-top:50px;}
+article header{margin-bottom:25px;}
+aside.more{margin:50px -10px 0;padding:0 10px;overflow:hidden;}aside.more section{margin:20px 20px 0 0;width:140px;float:left;}aside.more section h3{font-size:1.08em;}
+aside.more section ul{margin:0;padding:0 0 10px;list-style:none;}
+aside.more section li.selected a{background:#00283a;color:#EEE;padding:3px 6px;margin-left:-6px;}
 .menu{margin:0;padding:0;list-style:none;}.menu li{width:140px;margin:0 20px 0 0;padding:4px 0;float:left;border-bottom:solid 1px #E5E5E6;}.menu li:nth-last-child(1){border-bottom:none;}
 .menu a{display:block;padding:6px 0;color:inherit;}
 .menu .current-menu-item a,.menu .current-page-ancestor a{border-left:solid 3px #37b683;margin-left:-13px;padding-left:10px;background:#EAF1F1;}
