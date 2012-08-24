@@ -5,7 +5,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title></title>
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/media/css/core.css">
-		<?php wp_head(); ?>
+		<?php
+		if ($stylesheet = locate_template('media/css/'.get_post_type().'.css')) {
+			$relative_path = substr($stylesheet, strlen(get_template_directory()));
+			echo '<link rel="stylesheet" href="' . get_template_directory_uri() . $relative_path . '">'."\n";
+		}
+		wp_head();
+		?>
 	</head>
 	<body <?php body_class(); ?>>
 		<div id="header">
