@@ -74,7 +74,7 @@ nav.subnav {
 .panel {
 	.raised(#F5F5F5);
 	position: relative;
-	margin: 0 0 1.5em;
+	margin: 2em 0 1.5em;
 	padding: 2em 1.5em;
 
 	&.empty {
@@ -96,6 +96,11 @@ section.panel header {
 	p {
 		font-size: 1.38em;
 		line-height: 1.67em;
+	}
+
+	img.flyer {
+		display: block;
+		width: 100%;
 	}
 }
 
@@ -201,4 +206,40 @@ ol, ul {
 
 ol.steps > li::after {
 	content: counter(steps);
+}
+
+/* ===[ Bio and other Item Lists ]========================================================== */
+
+ul, ol {
+	&.bio-list,
+	&.item-list {
+		list-style: none;
+		margin: 0;
+		padding: 20px 0 0 20px;
+
+		li {
+			.raised;
+			width: 50%;
+			box-sizing: border-box;
+			margin: 0 0 20px;
+			border: solid 10px #FFF;
+			float: left;
+
+			&:nth-child(odd) {
+				margin-left: -20px;
+				margin-right: 20px;
+			}
+		}
+
+		img {
+			width: 100%;
+			height: auto;
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		p {
+			margin: 10px 0 0;
+		}
+	}
 }
