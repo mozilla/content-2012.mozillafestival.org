@@ -1,13 +1,15 @@
 @font-face{font-family:'Open Sans';src:url('//www.mozilla.org/img/fonts/OpenSans-Regular-webfont.eot');src:url('//www.mozilla.org/img/fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),url('//www.mozilla.org/img/fonts/OpenSans-Regular-webfont.woff') format('woff'),url('//www.mozilla.org/img/fonts/OpenSans-Regular-webfont.ttf') format('truetype'),url('//www.mozilla.org/img/fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');font-weight:normal;font-style:normal;}@font-face{font-family:'Open Sans';src:url('//www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.eot');src:url('//www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),url('//www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.woff') format('woff'),url('//www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.ttf') format('truetype'),url('//www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');font-weight:bold;font-style:normal;}@font-face{font-family:'Open Sans Light';src:url('//www.mozilla.org/img/fonts/OpenSans-Light-webfont.eot');src:url('//www.mozilla.org/img/fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),url('//www.mozilla.org/img/fonts/OpenSans-Light-webfont.woff') format('woff'),url('//www.mozilla.org/img/fonts/OpenSans-Light-webfont.ttf') format('truetype'),url('//www.mozilla.org/img/fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');font-weight:normal;font-style:normal;}html,body{background:#FFF;margin:0;padding:0;font-family:'Open Sans',sans-serif;font-size:13px;color:#4d4d4d;}
 .constrained{max-width:940px;margin:0 auto;padding:0 20px;overflow:hidden;}
-h1,h2,h3,h4{font-weight:bold;color:#00283a;margin:0;}
+h1,h2,h3,h4{font-weight:bold;color:#00283a;margin:0;clear:both;}
 h1{font-size:1.85em;}
 h2{font-size:1.6em;}
 h3{font-size:1.38em;}
 h4{font-size:1.08em;}
+ul{list-style:square;}
 p,li{margin:1em 0 0;}p.center,li.center{text-align:center;}
 p.right,li.right{text-align:right;}
 p.intro,li.intro{font-size:1.38em;}
+p.intro-large,li.intro-large{font-size:1.85em;}
 a{color:#37b683;text-decoration:none;}
 body.archive article{margin-top:50px;}
 article header{margin-bottom:25px;}
@@ -47,8 +49,9 @@ a.button::-moz-focus-inner,input.button::-moz-focus-inner,button::-moz-focus-inn
 nav.subnav{border-radius:5px;box-shadow:0 2px 4px rgba(0, 0, 0, 0.25);background:#ffffff;padding:1em 1.5em;overflow:hidden;}nav.subnav h1,nav.subnav h2,nav.subnav h3,nav.subnav h4,nav.subnav h5,nav.subnav p{margin:0;padding:0;font-size:1.11em;line-height:1.5em;font-weight:bold;float:left;}nav.subnav h1::after,nav.subnav h2::after,nav.subnav h3::after,nav.subnav h4::after,nav.subnav h5::after,nav.subnav p::after{content:":";}
 nav.subnav ul,nav.subnav li{line-height:1.05em;float:left;list-style:none;margin:0.35em 0;padding:0;}
 nav.subnav li{margin:0 0 0 0.75em;padding:0 0 0 0.75em;border-left:solid 1px #4d4d4d;}nav.subnav li:first-child{border:none;padding:0;}
-.panel{border-radius:5px;box-shadow:0 2px 4px rgba(0, 0, 0, 0.25);background:#f5f5f5;position:relative;margin:0 0 1.5em;padding:2em 1.5em;}.panel.empty{padding-bottom:0;}
+.panel{border-radius:5px;box-shadow:0 2px 4px rgba(0, 0, 0, 0.25);background:#f5f5f5;position:relative;margin:2em 0 1.5em;padding:2em 1.5em;}.panel.empty{padding-bottom:0;}
 .panel .header,article.panel header,section.panel header{background:#FFF;padding:2em 1.5em;margin:-2em -1.5em 2em;border-bottom:solid 1px #DDDEDE;border-radius:5px 5px 0 0;}.panel .header p,article.panel header p,section.panel header p{font-size:1.38em;line-height:1.67em;}
+.panel .header img.flyer,article.panel header img.flyer,section.panel header img.flyer{display:block;width:100%;}
 .panel.empty .header,article.panel.empty header,section.panel.empty header{border-radius:5px;margin-bottom:0;}
 .panel .footer,article.panel footer,section.panel footer{background:#FFF;padding:1em 1.5em 2em;margin:2em -1.5em -2em;border-top:solid 1px #DDDEDE;border-radius:0 0 5px 5px;}
 ol.steps,ul.steps{border-left:solid 10px #DDE4E4;list-style:none;margin:50px 0 0 25px;padding:0 0 0 25px;position:relative;counter-reset:steps;}ol.steps >li,ul.steps >li{counter-increment:steps;}ol.steps >li:first-child::before,ul.steps >li:first-child::before,ol.steps >li:last-child::before,ul.steps >li:last-child::before{content:"";position:absolute;top:0;left:-35px;width:10px;height:35px;background:#eaf1f1;}
@@ -58,3 +61,6 @@ ol.steps ul,ul.steps ul{margin:0;padding:0;list-style:none;}
 ol.steps ul li,ul.steps ul li,ol.steps p,ul.steps p{position:relative;}
 ol.steps ul li::after,ul.steps ul li::after,ol.steps p::after,ul.steps p::after{content:"";position:absolute;top:0;left:-50px;width:10px;height:10px;border:solid 3px #FFF;border-radius:50%;background:#37b683;margin:0 0 0 -8px;box-shadow:0 2px 4px rgba(0, 0, 0, 0.25);box-shadow:0 2px 4px rgba(0, 0, 0, 0.25),inset 0 2px 4px rgba(0, 0, 0, 0.25);}
 ol.steps>li::after{content:counter(steps);}
+ul.bio-list,ol.bio-list,ul.item-list,ol.item-list{list-style:none;margin:0;padding:20px 0 0 20px;}ul.bio-list li,ol.bio-list li,ul.item-list li,ol.item-list li{border-radius:5px;box-shadow:0 2px 4px rgba(0, 0, 0, 0.25);background:#ffffff;width:50%;box-sizing:border-box;margin:0 0 20px;border:solid 10px #FFF;float:left;}ul.bio-list li:nth-child(odd),ol.bio-list li:nth-child(odd),ul.item-list li:nth-child(odd),ol.item-list li:nth-child(odd){margin-left:-20px;margin-right:20px;}
+ul.bio-list img,ol.bio-list img,ul.item-list img,ol.item-list img{width:100%;height:auto;display:block;margin-bottom:10px;}
+ul.bio-list p,ol.bio-list p,ul.item-list p,ol.item-list p{margin:10px 0 0;}

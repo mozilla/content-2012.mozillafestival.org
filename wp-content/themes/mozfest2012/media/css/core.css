@@ -47,6 +47,7 @@ h4 {
 	font-weight: bold;
 	color: #00283a;
 	margin: 0;
+	clear: both;
 }
 
 h1 {
@@ -63,6 +64,10 @@ h3 {
 
 h4 {
 	font-size: 1.08em;
+}
+
+ul {
+	list-style: square;
 }
 
 p,
@@ -83,6 +88,11 @@ li.right {
 p.intro,
 li.intro {
 	font-size: 1.38em;
+}
+
+p.intro-large,
+li.intro-large {
+	font-size: 1.85em;
 }
 
 a {
@@ -737,7 +747,7 @@ nav.subnav li:first-child {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	background: #f5f5f5;
 	position: relative;
-	margin: 0 0 1.5em;
+	margin: 2em 0 1.5em;
 	padding: 2em 1.5em;
 }
 
@@ -761,6 +771,13 @@ article.panel header p,
 section.panel header p {
 	font-size: 1.38em;
 	line-height: 1.67em;
+}
+
+.panel .header img.flyer,
+article.panel header img.flyer,
+section.panel header img.flyer {
+	display: block;
+	width: 100%;
 }
 
 .panel.empty .header,
@@ -872,5 +889,54 @@ ul.steps p::after {
 
 ol.steps > li::after {
 	content: counter(steps);
+}
+
+/* ===[ Bio and other Item Lists ]========================================================== */
+ul.bio-list,
+ol.bio-list,
+ul.item-list,
+ol.item-list {
+	list-style: none;
+	margin: 0;
+	padding: 20px 0 0 20px;
+}
+
+ul.bio-list li,
+ol.bio-list li,
+ul.item-list li,
+ol.item-list li {
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	background: #ffffff;
+	width: 50%;
+	box-sizing: border-box;
+	margin: 0 0 20px;
+	border: solid 10px #FFF;
+	float: left;
+}
+
+ul.bio-list li:nth-child(odd),
+ol.bio-list li:nth-child(odd),
+ul.item-list li:nth-child(odd),
+ol.item-list li:nth-child(odd) {
+	margin-left: -20px;
+	margin-right: 20px;
+}
+
+ul.bio-list img,
+ol.bio-list img,
+ul.item-list img,
+ol.item-list img {
+	width: 100%;
+	height: auto;
+	display: block;
+	margin-bottom: 10px;
+}
+
+ul.bio-list p,
+ol.bio-list p,
+ul.item-list p,
+ol.item-list p {
+	margin: 10px 0 0;
 }
 
