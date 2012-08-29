@@ -10,6 +10,11 @@
 			$relative_path = substr($stylesheet, strlen(get_template_directory()));
 			echo '<link rel="stylesheet" href="' . get_template_directory_uri() . $relative_path . '">'."\n";
 		}
+		global $post;
+		if ($post && $stylesheet = locate_template('media/css/'.$post->post_name.'.css')) {
+			$relative_path = substr($stylesheet, strlen(get_template_directory()));
+			echo '<link rel="stylesheet" href="' . get_template_directory_uri() . $relative_path . '">'."\n";
+		}
 		wp_head();
 		?>
 	</head>
