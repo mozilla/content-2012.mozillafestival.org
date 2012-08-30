@@ -471,6 +471,35 @@ function mf2012_import_session_page () {
 	include(dirname(__FILE__).'/admin/import_sessions.php');
 }
 
+function mf2012_include_styles () {
+	global $post;
+
+	if ($post) {
+		foreach (array($post->post_type, $post->post_name) as $name) {
+			if ($stylesheet = locate_template('media/css/'.$name.'.css')) {
+				$relative_path = substr($stylesheet, strlen(get_template_directory()));
+				echo '<link rel="stylesheet" href="' . get_template_directory_uri() . $relative_path . '">'."\n";
+			}
+		}
+	}
+}
+
+add_action('wp_head', 'mf2012_include_styles', 100);
+
+function mf2012_include_scripts () {
+	global $post;
+
+	if ($post) {
+		foreach (array($post->post_type, $post->post_name) as $name) {
+			if ($script = locate_template('media/js/'.$name.'.js')) {
+				$relative_path = substr($script, strlen(get_template_directory()));
+				echo '<script src="' . get_template_directory_uri() . $relative_path . '"></script>'."\n";
+			}
+		}
+	}
+}
+
+add_action('wp_footer', 'mf2012_include_scripts', 100);
 
 /**
  * Utility Functions
