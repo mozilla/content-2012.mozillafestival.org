@@ -909,6 +909,8 @@ ol.item-list li {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	background: #ffffff;
 	width: 50%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	margin: 0 0 20px;
 	border: solid 10px #FFF;

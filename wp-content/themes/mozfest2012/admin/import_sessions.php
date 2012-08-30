@@ -215,6 +215,8 @@ $source = @$_REQUEST['source'];
 	#import-list input[type="text"],
 	#import-list textarea {
 		width: 100%;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 		margin-top: -4px;
 	}
