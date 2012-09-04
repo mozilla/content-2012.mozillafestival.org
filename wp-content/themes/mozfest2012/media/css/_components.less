@@ -34,6 +34,7 @@ button {
 nav.subnav {
 	.raised;
 	padding: 1em 1.5em;
+	margin: 2em 0;
 	overflow: hidden;
 
 	h1, h2, h3, h4, h5, p {
@@ -74,7 +75,7 @@ nav.subnav {
 .panel {
 	.raised(#F5F5F5);
 	position: relative;
-	margin: 2em 0 1.5em;
+	margin: 0 0 1.5em;
 	padding: 2em 1.5em;
 
 	&.empty {
@@ -92,6 +93,15 @@ section.panel header {
 	margin: -2em -1.5em 2em;
 	border-bottom: solid 1px #DDDEDE;
 	border-radius: 5px 5px 0 0;
+	overflow: hidden;
+
+	h2 {
+		margin-bottom: 0;
+	}
+
+	h3 {
+		margin-top: 0;
+	}
 
 	p {
 		font-size: 1.38em;
@@ -101,6 +111,8 @@ section.panel header {
 	img.flyer {
 		display: block;
 		width: 100%;
+		height: auto;
+		margin-bottom: 1em;
 	}
 }
 
@@ -121,6 +133,11 @@ section.panel footer {
 	margin: 2em -1.5em -2em;
 	border-top: solid 1px #DDDEDE;
 	border-radius: 0 0 5px 5px;
+	overflow: hidden;
+
+	h3 {
+		margin-top: 0;
+	}
 }
 
 /* ===[ Steps ]============================================================== */
@@ -208,7 +225,7 @@ ol.steps > li::after {
 	content: counter(steps);
 }
 
-/* ===[ Bio and other Item Lists ]========================================================== */
+/* ===[ Bio and other Item Lists ]=========================================== */
 
 ul, ol {
 	&.bio-list,
@@ -217,7 +234,7 @@ ul, ol {
 		margin: 0;
 		padding: 20px 0 0 20px;
 
-		li {
+		> li {
 			.raised;
 			width: 50%;
 			-webkit-box-sizing: border-box;
@@ -230,7 +247,13 @@ ul, ol {
 			&:nth-child(odd) {
 				margin-left: -20px;
 				margin-right: 20px;
+				clear: left;
 			}
+		}
+
+		h3 {
+			margin-top: 0;
+			margin-bottom: 0.5em;
 		}
 
 		img {
@@ -242,6 +265,48 @@ ul, ol {
 
 		p {
 			margin: 10px 0 0;
+
+			&.footer {
+				border-top: solid 1px #DDDEDE;
+				background: #F5F5F5;
+				padding: 20px 10px;
+				margin: 10px -10px -10px;
+				border-radius: 0 0 5px 5px;
+			}
 		}
 	}
+}
+
+/* ===[ Blockquotes ]======================================================== */
+
+blockquote.major {
+	.raised;
+	margin: 0 0 0 115px;
+	padding: 20px 30px;
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 15px;
+		height: 34px;
+		top: 28px;
+		right: 100%;
+		background: url(assets/box-arrow.png);
+	}
+
+	img.headshot {
+		position: absolute;
+		top: 0;
+		right: 100%;
+		margin: 0 25px 0 0;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+}
+
+/* ===[ Split ]============================================================== */
+
+.split {
+	.columns(2);
 }
