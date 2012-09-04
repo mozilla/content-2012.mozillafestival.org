@@ -40,29 +40,31 @@ body {
 }
 
 /* ===[ Standard Bits and Pieces ]=========================================== */
-h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
 	font-weight: bold;
 	color: #00283a;
 	margin: 0;
 	clear: both;
 }
 
-h1 {
-	font-size: 1.85em;
-}
-
 h2 {
-	font-size: 1.6em;
+	font-size: 1.85em;
+	margin-bottom: 1em;
 }
 
 h3 {
-	font-size: 1.38em;
+	font-size: 1.6em;
+	margin-top: 1em;
 }
 
 h4 {
+	font-size: 1.38em;
+}
+
+h5 {
 	font-size: 1.08em;
 }
 
@@ -70,9 +72,13 @@ ul {
 	list-style: square;
 }
 
+p {
+	margin: 1em 0 0;
+}
+
 p,
 li {
-	margin: 1em 0 0;
+	line-height: 1.77em;
 }
 
 p.center,
@@ -81,7 +87,9 @@ li.center {
 }
 
 p.right,
-li.right {
+li.right,
+p.buttons,
+li.buttons {
 	text-align: right;
 }
 
@@ -93,6 +101,7 @@ li.intro {
 p.intro-large,
 li.intro-large {
 	font-size: 1.85em;
+	margin: 0 0 1em;
 }
 
 a {
@@ -135,6 +144,25 @@ aside.more section li.selected a {
 	color: #EEE;
 	padding: 3px 6px;
 	margin-left: -6px;
+}
+
+img.alignleft {
+	float: left;
+	margin: 0 1em 0 0;
+}
+
+img.alignright {
+	float: right;
+	margin: 0 0 0 1em;
+}
+
+section section {
+	overflow: hidden;
+	margin-bottom: 2em;
+}
+
+pre.template {
+	white-space: pre-wrap;
 }
 
 /* ===[ Menus ]============================================================== */
@@ -695,6 +723,7 @@ nav.subnav {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	background: #ffffff;
 	padding: 1em 1.5em;
+	margin: 2em 0;
 	overflow: hidden;
 }
 
@@ -747,7 +776,7 @@ nav.subnav li:first-child {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	background: #f5f5f5;
 	position: relative;
-	margin: 2em 0 1.5em;
+	margin: 0 0 1.5em;
 	padding: 2em 1.5em;
 }
 
@@ -764,6 +793,19 @@ section.panel header {
 	margin: -2em -1.5em 2em;
 	border-bottom: solid 1px #DDDEDE;
 	border-radius: 5px 5px 0 0;
+	overflow: hidden;
+}
+
+.panel .header h2,
+article.panel header h2,
+section.panel header h2 {
+	margin-bottom: 0;
+}
+
+.panel .header h3,
+article.panel header h3,
+section.panel header h3 {
+	margin-top: 0;
 }
 
 .panel .header p,
@@ -778,6 +820,8 @@ article.panel header img.flyer,
 section.panel header img.flyer {
 	display: block;
 	width: 100%;
+	height: auto;
+	margin-bottom: 1em;
 }
 
 .panel.empty .header,
@@ -796,6 +840,13 @@ section.panel footer {
 	margin: 2em -1.5em -2em;
 	border-top: solid 1px #DDDEDE;
 	border-radius: 0 0 5px 5px;
+	overflow: hidden;
+}
+
+.panel .footer h3,
+article.panel footer h3,
+section.panel footer h3 {
+	margin-top: 0;
 }
 
 /* ===[ Steps ]============================================================== */
@@ -891,7 +942,7 @@ ol.steps > li::after {
 	content: counter(steps);
 }
 
-/* ===[ Bio and other Item Lists ]========================================================== */
+/* ===[ Bio and other Item Lists ]=========================================== */
 ul.bio-list,
 ol.bio-list,
 ul.item-list,
@@ -901,26 +952,37 @@ ol.item-list {
 	padding: 20px 0 0 20px;
 }
 
-ul.bio-list li,
-ol.bio-list li,
-ul.item-list li,
-ol.item-list li {
+ul.bio-list > li,
+ol.bio-list > li,
+ul.item-list > li,
+ol.item-list > li {
 	border-radius: 5px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	background: #ffffff;
 	width: 50%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	margin: 0 0 20px;
 	border: solid 10px #FFF;
 	float: left;
 }
 
-ul.bio-list li:nth-child(odd),
-ol.bio-list li:nth-child(odd),
-ul.item-list li:nth-child(odd),
-ol.item-list li:nth-child(odd) {
+ul.bio-list > li:nth-child(odd),
+ol.bio-list > li:nth-child(odd),
+ul.item-list > li:nth-child(odd),
+ol.item-list > li:nth-child(odd) {
 	margin-left: -20px;
 	margin-right: 20px;
+	clear: left;
+}
+
+ul.bio-list h3,
+ol.bio-list h3,
+ul.item-list h3,
+ol.item-list h3 {
+	margin-top: 0;
+	margin-bottom: 0.5em;
 }
 
 ul.bio-list img,
@@ -938,5 +1000,68 @@ ol.bio-list p,
 ul.item-list p,
 ol.item-list p {
 	margin: 10px 0 0;
+}
+
+ul.bio-list p.footer,
+ol.bio-list p.footer,
+ul.item-list p.footer,
+ol.item-list p.footer {
+	border-top: solid 1px #DDDEDE;
+	background: #F5F5F5;
+	padding: 20px 10px;
+	margin: 10px -10px -10px;
+	border-radius: 0 0 5px 5px;
+}
+
+/* ===[ Blockquotes ]======================================================== */
+blockquote.major {
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	background: #ffffff;
+	margin: 0 0 0 115px;
+	padding: 20px 30px;
+	position: relative;
+}
+
+blockquote.major::before {
+	content: "";
+	position: absolute;
+	width: 15px;
+	height: 34px;
+	top: 28px;
+	right: 100%;
+	background: url(assets/box-arrow.png);
+}
+
+blockquote.major img.headshot {
+	position: absolute;
+	top: 0;
+	right: 100%;
+	margin: 0 25px 0 0;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+/* ===[ Split ]============================================================== */
+.split {
+	-webkit-column-count: 2;
+	-webkit-column-gap: 20px;
+	-moz-column-count: 2;
+	-moz-column-gap: 20px;
+	-o-column-count: 2;
+	-o-column-gap: 20px;
+	column-count: 2;
+	column-gap: 20px;
+}
+
+.split h1:nth-child(n+2),
+.split h2:nth-child(n+2),
+.split h3:nth-child(n+2),
+.split h4:nth-child(n+2),
+.split h5:nth-child(n+2) {
+	-webkit-column-break-before: always;
+	-moz-column-break-before: always;
+	-o-column-break-before: always;
+	column-break-before: always;
 }
 
