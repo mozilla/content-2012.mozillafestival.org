@@ -124,6 +124,7 @@
 	margin: 0 0 1.5em;
 	padding: 0 1.5em 2em;
 	background: #FFF;
+	border-radius: 0 0 5px 5px;
 }
 
 #overview-ator.enabled > li.active > h3 {
