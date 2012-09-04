@@ -1,7 +1,7 @@
 <?php
 
 $taxonomy = get_taxonomy(TAXONOMY_ARCHIVE);
-$terms = get_terms(TAXONOMY_ARCHIVE, array('orderby'=>'term_group'));
+$terms = get_terms(TAXONOMY_ARCHIVE, array('orderby'=>'term_group', 'hide_empty'=>0));
 // echo '<pre>'.print_r(array($taxonomy, $terms),1).'</pre>';
 
 echo '<h2>' . $taxonomy->labels->name . '</h2>';
