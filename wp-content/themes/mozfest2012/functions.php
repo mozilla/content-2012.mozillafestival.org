@@ -476,7 +476,9 @@ function mf2012_import_session_page () {
 function mf2012_include_styles () {
 	global $post;
 
-	if ($post) {
+	if (is_404()) {
+		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/media/css/404.css">'."\n";
+	} else if ($post) {
 		foreach (array($post->post_type, $post->post_name) as $name) {
 			if ($stylesheet = locate_template('media/css/'.$name.'.css')) {
 				$relative_path = substr($stylesheet, strlen(get_template_directory()));
