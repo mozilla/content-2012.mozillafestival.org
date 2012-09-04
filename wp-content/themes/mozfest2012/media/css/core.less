@@ -1,9 +1,4 @@
-@green: #37B683;
-@blue: #00283A;
-@slate: #4D4D4D;
-@nav-border: ~"solid 1px #E5E5E6";
-@background: #EAF1F1;
-
+@import "_variables";
 @import "_mixins";
 @import "_fonts";
 
@@ -26,26 +21,28 @@ body {
 
 /* ===[ Standard Bits and Pieces ]=========================================== */
 
-h1, h2, h3, h4 {
+h2, h3, h4, h5 {
 	font-weight: bold;
 	color: @blue;
 	margin: 0;
 	clear: both;
 }
 
-h1 {
-	font-size: 1.85em;
-}
-
 h2 {
-	font-size: 1.6em;
+	font-size: 1.85em;
+	margin-bottom: 1em;
 }
 
 h3 {
-	font-size: 1.38em;
+	font-size: 1.6em;
+	margin-top: 1em;
 }
 
 h4 {
+	font-size: 1.38em;
+}
+
+h5 {
 	font-size: 1.08em;
 }
 
@@ -53,15 +50,20 @@ ul {
 	list-style: square;
 }
 
+p {
+	margin: 1em 0 0;
+}
+
 p,
 li {
-	margin: 1em 0 0;
+	line-height: 1.77em;
 
 	&.center {
 		text-align: center;
 	}
 
-	&.right {
+	&.right,
+	&.buttons {
 		text-align: right;
 	}
 
@@ -71,6 +73,7 @@ li {
 
 	&.intro-large {
 		font-size: 1.85em;
+		margin: 0 0 1em;
 	}
 }
 
@@ -114,6 +117,25 @@ aside.more {
 			margin-left: -6px;
 		}
 	}
+}
+
+img.alignleft {
+	float: left;
+	margin: 0 1em 0 0;
+}
+
+img.alignright {
+	float: right;
+	margin: 0 0 0 1em;
+}
+
+section section {
+	overflow: hidden;
+	margin-bottom: 2em;
+}
+
+pre.template {
+	white-space: pre-wrap;
 }
 
 /* ===[ Menus ]============================================================== */

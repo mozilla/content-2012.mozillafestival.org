@@ -4,3 +4,25 @@
 	background: @bg;
 }
 
+.columns (@count, @gutter: 20px) {
+	-webkit-column-count: @count;
+	-webkit-column-gap: @gutter;
+
+	-moz-column-count: @count;
+	-moz-column-gap: @gutter;
+
+	-o-column-count: @count;
+	-o-column-gap: @gutter;
+
+	column-count: @count;
+	column-gap: @gutter;
+
+	h1, h2, h3, h4, h5 {
+		&:nth-child(n+2) {
+			-webkit-column-break-before: always;
+			-moz-column-break-before: always;
+			-o-column-break-before: always;
+			column-break-before: always;
+		}
+	}
+}
