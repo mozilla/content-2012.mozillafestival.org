@@ -212,6 +212,8 @@ function mf2012_strip_html ($str) {
 
 add_filter('bloginfo', 'mf2012_allow_html');
 
+remove_filter ('the_content', 'wpautop');
+
 /**
  * Custom post types
  */
