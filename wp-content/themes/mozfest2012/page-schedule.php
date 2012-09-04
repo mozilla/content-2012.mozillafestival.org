@@ -29,6 +29,10 @@ if (have_posts()) {
 <?php
 query_posts(array(
 	'post_type' => 'session',
+	'meta_key' => 'start',
+	'orderby' => 'meta_value',
+	'order' => 'ASC',
+	'posts_per_page' => -1,
 ));
 
 if (have_posts()) {
