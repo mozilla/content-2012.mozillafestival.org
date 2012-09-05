@@ -214,6 +214,20 @@ add_filter('bloginfo', 'mf2012_allow_html');
 
 remove_filter ('the_content', 'wpautop');
 
+function mf2012_nav_classes ($items) {
+	$request = (is_ssl() ? 'https://' : 'http://') . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+	if (is_archive() || is_single() || is_page()) {
+		foreach ($items as $item) {
+			if ($item->url !== $request && stripos($request, $item->url) !== false) {
+				$item->classes[] = 'current-page-ancestor';
+			}
+		}
+	}
+	return $items;
+}
+
+add_filter('wp_nav_menu_objects', 'mf2012_nav_classes');
+
 /**
  * Custom post types
  */
@@ -367,6 +381,10 @@ function mf2012_map_organizers_to_users ($term_id, $taxonomy_id=null, $taxonomy=
 			$user_id = username_exists($username);
 			if (!$user_id) {
 				$user_id = wp_create_user($username, wp_generate_password(20));
+				wp_insert_user(array(
+					'ID' => $user_id,
+					'role' => 'organizer',
+				));
 			}
 		} else {
 			$user_id = $user->ID;
@@ -375,7 +393,6 @@ function mf2012_map_organizers_to_users ($term_id, $taxonomy_id=null, $taxonomy=
 		wp_insert_user(array(
 			'ID' => $user_id,
 			'user_login' => $username,
-			'role' => 'organizer',
 			'first_name' => @$name[0],
 			'last_name' => @$name[1],
 			'nickname' => @$name[0],
