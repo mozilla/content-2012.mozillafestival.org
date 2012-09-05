@@ -2,7 +2,7 @@
 
 foreach (array('theme'=>'Session Themes', 'format'=>'Session Formats') as $type => $label) {
 	echo '<section><h3>'.$label.'</h3>';
-	$terms = get_terms($type);
+	$terms = get_terms($type, array('hide_empty'=>0));
 	if (!empty($terms)) {
 		echo '<ul class="taxonomy-list '.$type.'">';
 		foreach ((array) $terms as $term) {
