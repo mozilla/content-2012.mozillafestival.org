@@ -279,7 +279,9 @@ $source = @$_REQUEST['source'];
 				foreach ($location_parts as $location_part) {
 					$location_slug = sanitize_title($location_part);
 					foreach ($locations as $location) {
-						if ($location->name === $location_part || $location->slug === $location_slug) {
+						if (stripos($location->name, $location_part) !== false
+								|| stripos($location_part, $location->name) !== false
+								|| $location->slug === $location_slug) {
 							if (!count($location_chain)) $location_found = true;
 							$location_chain[] = $location->term_id;
 							break 2;
