@@ -906,24 +906,30 @@ ul.steps  > li::after {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-ol.steps ul,
-ul.steps ul {
+ol.steps  > li  > ul,
+ul.steps  > li  > ul,
+ol.steps  > li  > ol,
+ul.steps  > li  > ol {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-ol.steps ul li,
-ul.steps ul li,
-ol.steps p,
-ul.steps p {
+ol.steps  > li  > ul > li,
+ul.steps  > li  > ul > li,
+ol.steps  > li  > ol > li,
+ul.steps  > li  > ol > li,
+ol.steps  > li  > p,
+ul.steps  > li  > p {
 	position: relative;
 }
 
-ol.steps ul li::after,
-ul.steps ul li::after,
-ol.steps p::after,
-ul.steps p::after {
+ol.steps  > li  > ul > li::after,
+ul.steps  > li  > ul > li::after,
+ol.steps  > li  > ol > li::after,
+ul.steps  > li  > ol > li::after,
+ol.steps  > li  > p::after,
+ul.steps  > li  > p::after {
 	content: "";
 	position: absolute;
 	top: 0;
