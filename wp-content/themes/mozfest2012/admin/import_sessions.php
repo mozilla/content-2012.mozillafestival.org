@@ -75,7 +75,7 @@ if (isset($_REQUEST['import'])) {
 		$location_chain = unserialize(urldecode($session['location']));
 		$include = !!$session['include'];
 
-		$meta = array(
+		$post_meta = array(
 			'ID' => $id,
 			'post_title' => $title,
 			'post_content' => $description,
@@ -86,7 +86,7 @@ if (isset($_REQUEST['import'])) {
 		);
 
 		if ($include) {
-			if ($pid = wp_insert_post($meta)) {
+			if ($pid = wp_insert_post($post_meta)) {
 				if ($id) {
 					$updated ++;
 				} else {
