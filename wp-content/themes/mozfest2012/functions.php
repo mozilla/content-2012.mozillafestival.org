@@ -493,11 +493,17 @@ function mf2012_import_session_page () {
 function mf2012_include_styles () {
 	global $post;
 
+	if (!defined('WP_DEBUG') || !WP_DEBUG) {
+		$min = '.min';
+	} else {
+		$min = '';
+	}
+
 	if (is_404()) {
-		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/media/css/404.css">'."\n";
+		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/media/css/404'.$min.'.css">'."\n";
 	} else if ($post) {
 		foreach (array($post->post_type, $post->post_name) as $name) {
-			if ($stylesheet = locate_template('media/css/'.$name.'.css')) {
+			if ($stylesheet = locate_template('media/css/'.$name.$min.'.css')) {
 				$relative_path = substr($stylesheet, strlen(get_template_directory()));
 				echo '<link rel="stylesheet" href="' . get_template_directory_uri() . $relative_path . '">'."\n";
 			}
