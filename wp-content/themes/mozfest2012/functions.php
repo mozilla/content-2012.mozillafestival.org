@@ -533,9 +533,7 @@ function mf2012_add_analytics () {
 
 	if ($enabled && !is_admin()) {
 		// Do some analytics stuff here
-?>
-		<!-- Analytics! -->
-<?php
+		echo '<script src="' . get_stylesheet_directory_uri() . '/media/js/webtrends/webtrends.load.js"></script>';
 	}
 }
 
