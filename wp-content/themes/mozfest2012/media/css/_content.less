@@ -48,4 +48,25 @@
 	width: 100%;
 }
 
+@media screen and (max-width: 699px) {
+	#content .constrained {
+		padding-right: 20px;
+		max-width: 100%;
+	}
+
+	#content-inner {
+		float: none;
+		max-width: 620px;
+		margin: 0 auto;
+
+		&:after {
+		    content: ".";
+		    display: block;
+		    height: 0;
+		    clear: both;
+		    visibility: hidden;
+		}
+	}
+}
+
 @import "_sidebar";
