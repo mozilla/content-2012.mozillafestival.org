@@ -215,7 +215,7 @@ add_filter('bloginfo', 'mf2012_allow_html');
 remove_filter ('the_content', 'wpautop');
 
 function mf2012_nav_classes ($items) {
-	$request = (is_ssl() ? 'https://' : 'http://') . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+	$request = site_url($_SERVER["REQUEST_URI"]);
 	if (is_archive() || is_single() || is_page()) {
 		foreach ($items as $item) {
 			if ($item->url !== $request && stripos($request, $item->url) !== false) {
