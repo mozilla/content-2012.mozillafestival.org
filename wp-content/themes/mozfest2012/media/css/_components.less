@@ -70,6 +70,31 @@ nav.subnav {
 	}
 }
 
+@media screen and (max-width: 520px), screen and (min-width: 700px) and (max-width: 839px) {
+	nav.subnav {
+		h1, h2, h3, h4, h5, p {
+			float: none;
+		}
+
+		ul {
+			float: none;
+			margin-left: 1em;
+		}
+
+		li {
+			width: 50%;
+			border: none;
+			padding: 0;
+			margin: 0;
+			line-height: 2em;
+		}
+
+		a {
+			display: block;
+		}
+	}
+}
+
 /* ===[ Panels ]============================================================= */
 
 .panel {
@@ -280,6 +305,26 @@ ul, ol {
 	}
 }
 
+@media screen and (max-width: 520px), screen and (min-width: 700px) and (max-width: 839px) {
+	ul, ol {
+		&.bio-list,
+		&.item-list {
+			padding-left: 0;
+
+			> li {
+				width: 100%;
+				float: none;
+				clear: both;
+
+				&:nth-child(odd) {
+					margin-left: 0;
+					margin-right: 0;
+				}
+			}
+		}
+	}
+}
+
 /* ===[ Blockquotes ]======================================================== */
 
 blockquote.major {
@@ -308,8 +353,28 @@ blockquote.major {
 	}
 }
 
+@media screen and (max-width: 520px), screen and (min-width: 700px) and (max-width: 839px) {
+	blockquote.major {
+		margin-left: 0;
+
+		&::before {
+			display: none;
+		}
+
+		img.headshot {
+			display: none;
+		}
+	}
+}
+
 /* ===[ Split ]============================================================== */
 
 .split {
 	.columns(2);
+}
+
+@media screen and (max-width: 520px), screen and (min-width: 700px) and (max-width: 839px) {
+	.split {
+		.columns(1);
+	}
 }
