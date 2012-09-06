@@ -1,3 +1,9 @@
+@media screen and (min-width: 840px) {
+	#sidebar {
+		margin-top: -7.5em;
+	}
+}
+
 ul.bullets {
 	list-style: none;
 	margin: 0 0 0 -20px;
@@ -17,7 +23,7 @@ ul.bullets {
 			display: block;
 			height: 90px;
 			max-width: 90px;
-			margin: 0 0 20px;
+			margin: 0 auto 20px;
 			background: #FFF 50% 50% no-repeat;
 			border-radius: 50%;
 		}
@@ -36,6 +42,29 @@ ul.bullets {
 
 		&.with::before {
 			background-image: url(assets/home-with.png);
+		}
+	}
+}
+
+@media screen and (max-width: 520px), screen and (min-width: 700px) and (max-width: 839px) {
+	ul.bullets {
+		li {
+			width: 50%;
+			margin-bottom: 20px;
+
+			&:nth-child(odd) {
+				clear: both;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 300px) {
+	ul.bullets {
+		li {
+			width: 100%;
+			margin-bottom: 20px;
+			clear: both;
 		}
 	}
 }
