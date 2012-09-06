@@ -75,7 +75,7 @@ if (isset($_REQUEST['import'])) {
 		$location_chain = unserialize(urldecode($session['location']));
 		$include = !!$session['include'];
 
-		$meta = array(
+		$post_meta = array(
 			'ID' => $id,
 			'post_title' => $title,
 			'post_content' => $description,
@@ -86,7 +86,7 @@ if (isset($_REQUEST['import'])) {
 		);
 
 		if ($include) {
-			if ($pid = wp_insert_post($meta)) {
+			if ($pid = wp_insert_post($post_meta)) {
 				if ($id) {
 					$updated ++;
 				} else {
@@ -279,7 +279,9 @@ $source = @$_REQUEST['source'];
 				foreach ($location_parts as $location_part) {
 					$location_slug = sanitize_title($location_part);
 					foreach ($locations as $location) {
-						if ($location->name === $location_part || $location->slug === $location_slug) {
+						if (stripos($location->name, $location_part) !== false
+								|| stripos($location_part, $location->name) !== false
+								|| $location->slug === $location_slug) {
 							if (!count($location_chain)) $location_found = true;
 							$location_chain[] = $location->term_id;
 							break 2;
