@@ -214,6 +214,20 @@ add_filter('bloginfo', 'mf2012_allow_html');
 
 remove_filter ('the_content', 'wpautop');
 
+function mf2012_nav_classes ($items) {
+	$request = site_url($_SERVER["REQUEST_URI"]);
+	if (is_archive() || is_single() || is_page()) {
+		foreach ($items as $item) {
+			if ($item->url !== $request && stripos($request, $item->url) !== false) {
+				$item->classes[] = 'current-page-ancestor';
+			}
+		}
+	}
+	return $items;
+}
+
+add_filter('wp_nav_menu_objects', 'mf2012_nav_classes');
+
 /**
  * Custom post types
  */
@@ -367,6 +381,10 @@ function mf2012_map_organizers_to_users ($term_id, $taxonomy_id=null, $taxonomy=
 			$user_id = username_exists($username);
 			if (!$user_id) {
 				$user_id = wp_create_user($username, wp_generate_password(20));
+				wp_insert_user(array(
+					'ID' => $user_id,
+					'role' => 'organizer',
+				));
 			}
 		} else {
 			$user_id = $user->ID;
@@ -375,7 +393,6 @@ function mf2012_map_organizers_to_users ($term_id, $taxonomy_id=null, $taxonomy=
 		wp_insert_user(array(
 			'ID' => $user_id,
 			'user_login' => $username,
-			'role' => 'organizer',
 			'first_name' => @$name[0],
 			'last_name' => @$name[1],
 			'nickname' => @$name[0],
@@ -476,11 +493,17 @@ function mf2012_import_session_page () {
 function mf2012_include_styles () {
 	global $post;
 
+	if (!defined('WP_DEBUG') || !WP_DEBUG) {
+		$min = '.min';
+	} else {
+		$min = '';
+	}
+
 	if (is_404()) {
-		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/media/css/404.css">'."\n";
+		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/media/css/404'.$min.'.css">'."\n";
 	} else if ($post) {
 		foreach (array($post->post_type, $post->post_name) as $name) {
-			if ($stylesheet = locate_template('media/css/'.$name.'.css')) {
+			if ($stylesheet = locate_template('media/css/'.$name.$min.'.css')) {
 				$relative_path = substr($stylesheet, strlen(get_template_directory()));
 				echo '<link rel="stylesheet" href="' . get_template_directory_uri() . $relative_path . '">'."\n";
 			}
@@ -504,6 +527,19 @@ function mf2012_include_scripts () {
 }
 
 add_action('wp_footer', 'mf2012_include_scripts', 100);
+
+function mf2012_add_analytics () {
+	$enabled = !defined('WP_DEBUG') || !WP_DEBUG;
+
+	if ($enabled && !is_admin()) {
+		// Do some analytics stuff here
+?>
+		<!-- Analytics! -->
+<?php
+	}
+}
+
+add_action('wp_footer', 'mf2012_add_analytics', 100);
 
 /**
  * Utility Functions
