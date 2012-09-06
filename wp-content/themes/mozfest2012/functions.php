@@ -528,6 +528,19 @@ function mf2012_include_scripts () {
 
 add_action('wp_footer', 'mf2012_include_scripts', 100);
 
+function mf2012_add_analytics () {
+	$enabled = !defined('WP_DEBUG') || !WP_DEBUG;
+
+	if ($enabled && !is_admin()) {
+		// Do some analytics stuff here
+?>
+		<!-- Analytics! -->
+<?php
+	}
+}
+
+add_action('wp_footer', 'mf2012_add_analytics', 100);
+
 /**
  * Utility Functions
  */
