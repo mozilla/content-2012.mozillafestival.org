@@ -44,7 +44,10 @@ pre.template{white-space:pre-wrap;}
 #sidebar section{padding:20px;border-top:solid 1px #E5E5E6;}#sidebar section:first-child{border-top:none;}
 #sidebar section h2{font-size:1.08em;margin:0 0 1em;}
 #sidebar section p{margin:1em 0 0;}
-@media screen and (max-width:699px){#sidebar{float:none;clear:both;width:auto;max-width:300px;margin:50px auto 0;}}#footer{border-top:solid 1px #E5E5E6;padding-bottom:50px;}#footer .constrained{padding-right:0;max-width:960px;}
+@media screen and (max-width:699px){#sidebar{float:none;clear:both;width:auto;max-width:300px;margin:50px auto 0;}}#sidebar .widget_twitter ul{list-style:none;padding-left:0;margin-bottom:0;}
+#sidebar .widget_twitter li{border-top:solid 1px #E5E5E6;margin-top:1em;padding-top:1em;}#sidebar .widget_twitter li:first-child{border-top:none;margin-top:0;padding-top:0;}
+#sidebar .widget_twitter a.link{display:inline-block;float:right;}
+#footer{border-top:solid 1px #E5E5E6;padding-bottom:50px;}#footer .constrained{padding-right:0;max-width:960px;}
 #footer h4{color:#37b683;margin:0 0 0.75em;padding-top:50px;}
 #footer-menu{width:480px;float:left;}#footer-menu .menu li:nth-last-child(1),#footer-menu .menu li:nth-last-child(2){border-bottom:none;}
 #contact-menu,#previously-menu{width:160px;float:left;}#contact-menu .menu li:nth-child(1),#previously-menu .menu li:nth-child(1){border-top:none;}
