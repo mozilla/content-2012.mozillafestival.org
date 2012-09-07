@@ -1,5 +1,7 @@
 <?php
 
+require_once(dirname(__FILE__).'/admin/widgets.php');
+
 function mf2012_empty_function () {
 	// Do nothing
 }
