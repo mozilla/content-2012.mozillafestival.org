@@ -37,7 +37,7 @@ query_posts(array(
 
 if (have_posts()) {
 ?>
-			<section class="session-list">
+			<section class="session-list" id="all-sessions">
 				<h2>All Sessions</h2>
 <?php
 	while (have_posts()) {
