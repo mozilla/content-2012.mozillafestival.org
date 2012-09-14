@@ -1,5 +1,7 @@
 <?php
 
+require_once(dirname(__FILE__).'/admin/widgets.php');
+
 function mf2012_empty_function () {
 	// Do nothing
 }
@@ -383,6 +385,7 @@ function mf2012_map_organizers_to_users ($term_id, $taxonomy_id=null, $taxonomy=
 				$user_id = wp_create_user($username, wp_generate_password(20));
 				wp_insert_user(array(
 					'ID' => $user_id,
+					'user_login' => $username,
 					'role' => 'organizer',
 				));
 			}
