@@ -22,7 +22,7 @@ if (have_posts()) {
 ?>
 			<aside class="more">
 				<h2>View Sessions by Type</h2>
-				<p class="intro">Learn more about session formats</p>
+				<p class="intro">Learn more about <a href="/schedule/formats/">session formats</a>.</p>
 				<?php get_template_part('taxonomy-more-inner'); ?>
 			</aside>
 
@@ -37,7 +37,7 @@ query_posts(array(
 
 if (have_posts()) {
 ?>
-			<section class="session-list">
+			<section class="session-list" id="all-sessions">
 				<h2>All Sessions</h2>
 <?php
 	while (have_posts()) {

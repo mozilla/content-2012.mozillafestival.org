@@ -628,6 +628,29 @@ pre.template {
 
 }
 
+#sidebar .widget_twitter ul {
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+#sidebar .widget_twitter li {
+	border-top: solid 1px #E5E5E6;
+	margin-top: 1em;
+	padding-top: 1em;
+}
+
+#sidebar .widget_twitter li:first-child {
+	border-top: none;
+	margin-top: 0;
+	padding-top: 0;
+}
+
+#sidebar .widget_twitter a.link {
+	display: inline-block;
+	float: right;
+}
+
 #footer {
 	border-top: solid 1px #E5E5E6;
 	padding-bottom: 50px;
@@ -746,6 +769,8 @@ button::-moz-focus-inner {
 /* ===[ Sub-navigation ]===================================================== */
 nav.subnav {
 	border-radius: 5px;
+	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	background: #ffffff;
 	padding: 1em 1.5em;
@@ -828,6 +853,8 @@ nav.subnav li:first-child {
 /* ===[ Panels ]============================================================= */
 .panel {
 	border-radius: 5px;
+	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	background: #f5f5f5;
 	position: relative;
@@ -1018,6 +1045,8 @@ ol.bio-list > li,
 ul.item-list > li,
 ol.item-list > li {
 	border-radius: 5px;
+	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	background: #ffffff;
 	width: 50%;
@@ -1104,6 +1133,8 @@ ol.item-list p.footer {
 /* ===[ Blockquotes ]======================================================== */
 blockquote.major {
 	border-radius: 5px;
+	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	background: #ffffff;
 	margin: 0 0 0 115px;
