@@ -78,7 +78,7 @@ li {
 }
 
 a {
-	color: @green;
+	color: @light_blue;
 	text-decoration: none;
 }
 
@@ -163,20 +163,59 @@ pre.template {
 	a {
 		display: block;
 		padding: 6px 0;
-		color: inherit;
 	}
 
 	.current-menu-item a,
 	.current-page-ancestor a {
-		border-left: solid 3px @green;
+		border-left: solid 3px @light_blue;
 		margin-left: -13px;
 		padding-left: 10px;
 		background: #EAF1F1;
 	}
 }
 
+/* ===[ Stripes ]============================================================ */
+
+#header,
+#footer {
+	position: relative;
+	border-top: solid 16px @blue;
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		top: -16px;
+		height: 16px;
+	}
+
+	&::before {
+		left: 50%;
+		width: 50%;
+		background: @light_blue;
+	}
+
+	&::after {
+		left: 33.333%;
+		width: 33.333%;
+		background: @red;
+		border: solid #FFF;
+		border-width: 0 4px;
+		margin-left: -4px;
+		z-index: 1;
+	}
+}
+
+/* ===[ Header ]============================================================= */
+
 @import "_header";
+
+/* ===[ Content ]============================================================ */
+
 @import "_content";
+
+/* ===[ Footer ]============================================================= */
+
 @import "_footer";
 
 @import "_components";
