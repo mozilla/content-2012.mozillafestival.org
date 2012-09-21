@@ -27,7 +27,7 @@ ul.bullets li::before {
 	height: 90px;
 	max-width: 90px;
 	margin: 0 auto 20px;
-	background: #ffffff 50% 50% no-repeat;
+	background: #279dd4 50% 50% no-repeat;
 	border-radius: 50%;
 }
 
