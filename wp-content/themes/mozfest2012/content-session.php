@@ -44,11 +44,14 @@
 			$taxonomy = 'location';
 			$location_list = array();
 			$locations = get_the_terms(get_the_ID(), $taxonomy);
-			foreach ($locations as $location) {
-				$location_list[] = $location;
-				while ($location && $location->parent) {
-					$location = array_pop(get_terms($taxonomy, array('include'=>array($location->parent), 'hide_empty'=>0)));
+
+			if ($locations) {
+				foreach ($locations as $location) {
 					$location_list[] = $location;
+					while ($location && $location->parent) {
+						$location = array_pop(get_terms($taxonomy, array('include'=>array($location->parent), 'hide_empty'=>0)));
+						$location_list[] = $location;
+					}
 				}
 			}
 
