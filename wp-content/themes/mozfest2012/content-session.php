@@ -26,7 +26,7 @@
 	?>
 	</header>
 	<div class="description">
-		<?php the_content(); ?>
+		<?php if (is_single()) { the_content(); } else { the_excerpt(); } ?>
 	</div>
 	<?php
 		if (is_single()) {
