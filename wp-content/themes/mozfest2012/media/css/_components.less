@@ -101,7 +101,7 @@ nav.subnav {
 /* ===[ Panels ]============================================================= */
 
 .panel {
-	.raised(#F5F5F5);
+	.raised(@pale_blue);
 	position: relative;
 	margin: 0 0 1.5em;
 	padding: 2em 1.5em;
@@ -381,5 +381,20 @@ blockquote.major {
 @media screen and (max-width: 520px), screen and (min-width: 700px) and (max-width: 839px) {
 	.split {
 		.columns(1);
+	}
+}
+
+/* ===[ Share ]============================================================== */
+
+.share ul {
+	overflow: hidden;
+	list-style: none;
+	margin: 0;
+	padding: 0 0 0 25px;
+
+	li {
+		float: left;
+		margin: 0;
+		padding: 0;
 	}
 }
