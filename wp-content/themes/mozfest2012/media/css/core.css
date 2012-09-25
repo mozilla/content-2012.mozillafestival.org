@@ -189,12 +189,24 @@ pre.template {
 	padding: 6px 0;
 }
 
-.menu .current-menu-item a,
-.menu .current-page-ancestor a {
-	border-left: solid 3px #279dd4;
+.menu a:hover {
 	margin-left: -13px;
 	padding-left: 10px;
-	background: #EAF1F1;
+	border-left: solid 3px #279dd4;
+	background: #F9F9F9;
+}
+
+.menu .current-menu-item a,
+.menu .current-page-ancestor a {
+	margin-left: -13px;
+	padding-left: 13px;
+	background: #00283a;
+	color: #FFF !important;
+}
+
+.menu .current-menu-item a:hover,
+.menu .current-page-ancestor a:hover {
+	padding-left: 10px;
 }
 
 /* ===[ Stripes ]============================================================ */
@@ -920,7 +932,7 @@ nav.subnav li:first-child {
 	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-	background: #f5f5f5;
+	background: #e9f5fb;
 	position: relative;
 	margin: 0 0 1.5em;
 	padding: 2em 1.5em;
@@ -1287,5 +1299,19 @@ blockquote.major img.headshot {
 	  column-break-before: always;
 	}
 
+}
+
+/* ===[ Share ]============================================================== */
+.share ul {
+	overflow: hidden;
+	list-style: none;
+	margin: 0;
+	padding: 0 0 0 25px;
+}
+
+.share ul li {
+	float: left;
+	margin: 0;
+	padding: 0;
 }
 

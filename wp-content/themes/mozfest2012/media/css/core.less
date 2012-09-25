@@ -163,14 +163,25 @@ pre.template {
 	a {
 		display: block;
 		padding: 6px 0;
+
+		&:hover {
+			margin-left: -13px;
+			padding-left: 10px;
+			border-left: solid 3px @light_blue;
+			background: #F9F9F9;
+		}
 	}
 
 	.current-menu-item a,
 	.current-page-ancestor a {
-		border-left: solid 3px @light_blue;
 		margin-left: -13px;
-		padding-left: 10px;
-		background: #EAF1F1;
+		padding-left: 13px;
+		background: @blue;
+		color: #FFF !important;
+
+		&:hover {
+			padding-left: 10px;
+		}
 	}
 }
 
