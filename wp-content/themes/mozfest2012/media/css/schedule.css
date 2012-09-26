@@ -84,7 +84,7 @@
 	margin: 0;
 	padding: 1.25em 0;
 	text-align: center;
-	background: #F5F5F5;
+	background: #e9f5fb;
 	border-radius: 0;
 	border: none;
 	border-top: solid 1px rgba(255, 255, 255, 0.5);
@@ -92,7 +92,7 @@
 	-moz-box-sizing: border-box;
 	-webkit-transform: translatey(3px);
 	box-sizing: border-box;
-	color: #37b683;
+	color: #279dd4;
 	cursor: pointer;
 }
 

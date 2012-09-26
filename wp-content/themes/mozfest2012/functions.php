@@ -214,7 +214,16 @@ function mf2012_strip_html ($str) {
 
 add_filter('bloginfo', 'mf2012_allow_html');
 
-remove_filter ('the_content', 'wpautop');
+function mf2012_autop ($str, $br=1) {
+	if (get_post_type() === 'session') {
+		$str = wpautop($str, $br);
+	}
+	return $str;
+}
+
+add_filter('the_content', 'mf2012_autop');
+
+remove_filter('the_content', 'wpautop');
 
 function mf2012_nav_classes ($items) {
 	$request = site_url($_SERVER["REQUEST_URI"]);
