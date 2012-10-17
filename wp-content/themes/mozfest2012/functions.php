@@ -219,8 +219,12 @@ function __mf2012_autolink_callback ($matches) {
 	if ($open == '[' && $close == ']') {
 		$label = trim($label);
 	} else {
-		$label = preg_replace('|^https?://|', '', $link);
-		$label = preg_replace('|/$|', '', $label);
+		if (preg_match('/\.(jpg|png|gif)$/', $link)) {
+			return '<img src="'.$link.'" style="max-width: 100%;">';
+		} else {
+			$label = preg_replace('|^https?://|', '', $link);
+			$label = preg_replace('|/$|', '', $label);
+		}
 	}
 
 	return '<a href="'.$link.'">'.$label.'</a>';
