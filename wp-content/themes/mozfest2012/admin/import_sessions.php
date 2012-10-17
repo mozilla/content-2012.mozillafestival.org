@@ -10,7 +10,8 @@ function parse ($content) {
 
 	foreach (explode("\n", $content) as $line) {
 		list($key, $value) = explode(':', $line, 2);
-		$key = strtolower(trim(array_shift(explode(';', $key))));
+		$key_parts = explode(';', $key);
+		$key = strtolower(trim(array_shift($key_parts)));
 		$value = stripslashes(str_replace('\n', "\n", trim($value)));
 		switch ($key) {
 			case "begin":
@@ -28,6 +29,7 @@ function parse ($content) {
 				if (!is_null($event)) {
 					if ($key == 'dtstart' || $key == 'dtend') {
 						$value = strtotime($value);
+						$event['is_date'] = !!count($key_parts);
 					}
 					$event[$key] = $value;
 				} else {
@@ -73,7 +75,7 @@ if (isset($_REQUEST['import'])) {
 		$start = date('Y-m-d H:i', $session['start']);
 		$end = date('Y-m-d H:i', $session['end']);
 		$location_chain = unserialize(urldecode($session['location']));
-		$include = !!$session['include'];
+		$include = !!@$session['include'];
 
 		$post_meta = array(
 			'ID' => $id,
@@ -113,11 +115,11 @@ if (isset($_REQUEST['import'])) {
 						);
 					}
 					// echo '<pre>'.print_r($location,1).'</pre>';
-					$parent = $location->term_id;
+					$parent = @$location->term_id;
 				}
 
 				if (isset($location) && $location) {
-					wp_set_post_terms($pid, $location->term_id, 'location');
+					wp_set_post_terms($pid, @$location->term_id, 'location');
 				}
 			} else {
 				$failed ++;
@@ -267,7 +269,7 @@ $source = @$_REQUEST['source'];
 					$title = $session->post_title;
 				}
 
-				if (intval(date('Hi', $event->dtstart)) + intval(date('Hi', $event->dtend)) === 0) {
+				if ($event->is_date) {
 					$state = 'Failed';
 					$valid = false;
 				}
