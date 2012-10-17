@@ -214,9 +214,29 @@ function mf2012_strip_html ($str) {
 
 add_filter('bloginfo', 'mf2012_allow_html');
 
+function __mf2012_autolink_callback ($matches) {
+	@list($match, $open, $label, $link, $close) = $matches;
+	if ($open == '[' && $close == ']') {
+		$label = trim($label);
+	} else {
+		$label = preg_replace('|^https?://|', '', $link);
+		$label = preg_replace('|/$|', '', $label);
+	}
+
+	return '<a href="'.$link.'">'.$label.'</a>';
+}
+
+function mf2012_autolink ($str) {
+	return preg_replace_callback('|(?:(\[)(.*?))?(https?://[^\]\s]+)(\])?|', '__mf2012_autolink_callback', $str);
+}
+
 function mf2012_autop ($str, $br=1) {
 	if (get_post_type() === 'session') {
+		$str = mf2012_autolink($str);
+		$str = preg_replace('|^\s*\*\s*(.*?)\s*$|m', '<li>$1</li>', $str);
 		$str = wpautop($str, $br);
+		$str = preg_replace('|(</p>\s*)(<li>)|', '$1<ul>$2', $str);
+		$str = preg_replace('|(</li>)(\s*<p>)|', '$1</ul>$2', $str);
 	}
 	return $str;
 }
