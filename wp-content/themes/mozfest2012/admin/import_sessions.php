@@ -10,7 +10,8 @@ function parse ($content) {
 
 	foreach (explode("\n", $content) as $line) {
 		list($key, $value) = explode(':', $line, 2);
-		$key = strtolower(trim(array_shift(explode(';', $key))));
+		$key_parts = explode(';', $key);
+		$key = strtolower(trim(array_shift($key_parts)));
 		$value = stripslashes(str_replace('\n', "\n", trim($value)));
 		switch ($key) {
 			case "begin":
@@ -28,6 +29,7 @@ function parse ($content) {
 				if (!is_null($event)) {
 					if ($key == 'dtstart' || $key == 'dtend') {
 						$value = strtotime($value);
+						$event['is_date'] = !!count($key_parts);
 					}
 					$event[$key] = $value;
 				} else {
@@ -73,7 +75,7 @@ if (isset($_REQUEST['import'])) {
 		$start = date('Y-m-d H:i', $session['start']);
 		$end = date('Y-m-d H:i', $session['end']);
 		$location_chain = unserialize(urldecode($session['location']));
-		$include = !!$session['include'];
+		$include = !!@$session['include'];
 
 		$post_meta = array(
 			'ID' => $id,
@@ -113,11 +115,11 @@ if (isset($_REQUEST['import'])) {
 						);
 					}
 					// echo '<pre>'.print_r($location,1).'</pre>';
-					$parent = $location->term_id;
+					$parent = @$location->term_id;
 				}
 
 				if (isset($location) && $location) {
-					wp_set_post_terms($pid, $location->term_id, 'location');
+					wp_set_post_terms($pid, @$location->term_id, 'location');
 				}
 			} else {
 				$failed ++;
@@ -267,7 +269,7 @@ $source = @$_REQUEST['source'];
 					$title = $session->post_title;
 				}
 
-				if (intval(date('Hi', $event->dtstart)) + intval(date('Hi', $event->dtend)) === 0) {
+				if ($event->is_date) {
 					$state = 'Failed';
 					$valid = false;
 				}
@@ -302,8 +304,8 @@ $source = @$_REQUEST['source'];
 					echo '	<dt>Description</dt>';
 					echo '		<dd><textarea name="sessions['.$i.'][description]" rows="6">' . $event->description . '</textarea></dd>';
 					echo '	<dt>Location</dt>';
-					echo '		<dd>' . $event->location;
-					if ($location_found) echo ' <img src="data:image/gif;base64,R0lGODlhEAAQAMQfAHbDR0twLrPdlpHQaZGYjPn8983muYvSWIPNU3G/RNTtxTZZGn6TbVKCLJPmV4nkTOz35ajld8LmqV16Rn7VR4DLT4zlUExgPHGLXIvOYKTad4DZSGm4PlJnQv///////yH5BAEAAB8ALAAAAAAQABAAAAWE4Cd+Xml6Y0pORMswE6p6mGFIUR41skgbh+ABgag4eL4OkFisDAwZxwLl6QiGzQHEM3AEqFZmJbNVICxfkjWjgAwUHkECYJmqBQNJYSuf18ECAABafQkJD3ZVGhyChoYcHH8+FwcJkJccD2kjHpQPFKAbmh4FMxcNqKhTPSknJiqwsSMhADs=" alt="Location Found">';
+					echo '		<dd>' . $event->location . '&nbsp;';
+					if ($location_found) echo '<img src="data:image/gif;base64,R0lGODlhEAAQAMQfAHbDR0twLrPdlpHQaZGYjPn8983muYvSWIPNU3G/RNTtxTZZGn6TbVKCLJPmV4nkTOz35ajld8LmqV16Rn7VR4DLT4zlUExgPHGLXIvOYKTad4DZSGm4PlJnQv///////yH5BAEAAB8ALAAAAAAQABAAAAWE4Cd+Xml6Y0pORMswE6p6mGFIUR41skgbh+ABgag4eL4OkFisDAwZxwLl6QiGzQHEM3AEqFZmJbNVICxfkjWjgAwUHkECYJmqBQNJYSuf18ECAABafQkJD3ZVGhyChoYcHH8+FwcJkJccD2kjHpQPFKAbmh4FMxcNqKhTPSknJiqwsSMhADs=" alt="Location Found">';
 					echo '</dd>';
 					echo '	<dt>Start</dt>';
 					echo '		<dd>' . date('H:i (D. jS)', $event->dtstart) . '</dd>';
@@ -319,7 +321,9 @@ $source = @$_REQUEST['source'];
 					echo '<input type="hidden" name="sessions['.$i.'][location]" value="' . urlencode(serialize($location_chain)) . '">';
 					echo '<input type="hidden" name="sessions['.$i.'][meta]['.$link_host.']" value="' . $event->url . '">';
 					echo '<input type="hidden" name="sessions['.$i.'][uid]" value="' . $event->uid . '">';
-					echo '<p><label><input type="checkbox" name="sessions['.$i.'][include]" value="1" checked="checked"> ' . $import_message . '</label></p>';
+
+					$default_import = ($state == 'New') ? ' checked="checked"' : '';
+					echo '<p><label><input type="checkbox" name="sessions['.$i.'][include]" value="1"'.$default_import.'> ' . $import_message . '</label></p>';
 				} else {
 					echo '<p>Could not import this session.</p>';
 				}
