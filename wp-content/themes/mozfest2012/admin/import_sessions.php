@@ -319,7 +319,9 @@ $source = @$_REQUEST['source'];
 					echo '<input type="hidden" name="sessions['.$i.'][location]" value="' . urlencode(serialize($location_chain)) . '">';
 					echo '<input type="hidden" name="sessions['.$i.'][meta]['.$link_host.']" value="' . $event->url . '">';
 					echo '<input type="hidden" name="sessions['.$i.'][uid]" value="' . $event->uid . '">';
-					echo '<p><label><input type="checkbox" name="sessions['.$i.'][include]" value="1" checked="checked"> ' . $import_message . '</label></p>';
+
+					$default_import = ($state == 'New') ? ' checked="checked"' : '';
+					echo '<p><label><input type="checkbox" name="sessions['.$i.'][include]" value="1"'.$default_import.'> ' . $import_message . '</label></p>';
 				} else {
 					echo '<p>Could not import this session.</p>';
 				}
