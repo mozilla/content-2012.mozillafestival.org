@@ -215,9 +215,9 @@ function mf2012_strip_html ($str) {
 add_filter('bloginfo', 'mf2012_allow_html');
 
 function __mf2012_autolink_callback ($matches) {
-	@list($match, $open, $label, $link, $close) = $matches;
+	@list($match, $open, $before, $link, $after, $close) = $matches;
 	if ($open == '[' && $close == ']') {
-		$label = trim($label);
+		$label = trim($before) . trim($after);
 	} else {
 		if (preg_match('/\.(jpg|png|gif)$/', $link)) {
 			return '<img src="'.$link.'" style="max-width: 100%;">';
@@ -231,7 +231,7 @@ function __mf2012_autolink_callback ($matches) {
 }
 
 function mf2012_autolink ($str) {
-	return preg_replace_callback('|(?:(\[)(.*?))?(https?://[^\]\s]+)(\])?|', '__mf2012_autolink_callback', $str);
+	return preg_replace_callback('|(?:(\[)(.*?))?(https?://[^\]\s]+)(?:(.*?)(\]))?|', '__mf2012_autolink_callback', $str);
 }
 
 function mf2012_autop ($str, $br=1) {
