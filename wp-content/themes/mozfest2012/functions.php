@@ -215,9 +215,9 @@ function mf2012_strip_html ($str) {
 add_filter('bloginfo', 'mf2012_allow_html');
 
 function __mf2012_autolink_callback ($matches) {
-	@list($match, $open, $label, $link, $close) = $matches;
+	@list($match, $open, $before, $link, $after, $close) = $matches;
 	if ($open == '[' && $close == ']') {
-		$label = trim($label);
+		$label = trim($before) . trim($after);
 	} else {
 		if (preg_match('/\.(jpg|png|gif)$/', $link)) {
 			return '<img src="'.$link.'" style="max-width: 100%;">';
@@ -231,7 +231,7 @@ function __mf2012_autolink_callback ($matches) {
 }
 
 function mf2012_autolink ($str) {
-	return preg_replace_callback('|(?:(\[)(.*?))?(https?://[^\]\s]+)(\])?|', '__mf2012_autolink_callback', $str);
+	return preg_replace_callback('|(?:(\[)(.*?))?(https?://[^\]\s]+)(?:(.*?)(\]))?|', '__mf2012_autolink_callback', $str);
 }
 
 function mf2012_autop ($str, $br=1) {
@@ -392,6 +392,67 @@ function mf2012_user_contact_methods ($contact_method) {
 }
 
 add_filter('user_contactmethods', 'mf2012_user_contact_methods');
+
+function mf2012_update_user ($user_id) {
+	$avatar = null;
+
+	if (!empty($_REQUEST['twitter'])) {
+		$url = sprintf('https://api.twitter.com/1/users/profile_image?screen_name=%s&size=original', $_REQUEST['twitter']);
+
+		try {
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_NOBODY, 1);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_exec($ch);
+			$info = curl_getinfo($ch);
+			curl_close($ch);
+
+			if (isset($info['redirect_url'])) {
+				$avatar = $info['redirect_url'];
+			}
+		} catch (Exception $e) {
+			// Ignore
+		}
+	}
+
+ 	if (!is_null($avatar)) {
+		update_user_meta($user_id, 'avatar', $avatar);
+	} else {
+		delete_user_meta($user_id, 'avatar');
+	}
+}
+
+add_action('edit_user_profile_update', 'mf2012_update_user');
+
+function mf2012_get_avatar ($img, $id_or_email, $size, $default) {
+	$src = preg_replace('/^<img .*?src=\'([^\']*)\'.*?>$/i', '$1', $img);
+	$user_id = null;
+
+	// echo '<pre>'.print_r(func_get_args(),1).'</pre>';
+
+	if (is_numeric($id_or_email)) {
+		$user_id = $id_or_email;
+	} else if (isset($id_or_email->user_id)) {
+		$user_id = $id_or_email->user_id;
+	} else {
+		$user = get_user_by('email', $id_or_email);
+		if ($user) {
+			$user_id = $user->ID;
+		}
+	}
+
+	if ($user_id) {
+		$avatar = get_user_meta($user_id, 'avatar');
+		if ($avatar && count($avatar)) {
+			$src = 'http://src.sencha.io/'.$size.'/'.$size.'/'.array_pop($avatar);
+		}
+	}
+
+	return sprintf('<img src="%1$s" class="avatar avatar-%2$d photo" width="%2$d" height="%2$d">', $src, $size);
+}
+
+add_filter('get_avatar', 'mf2012_get_avatar', 10, 4);
 
 function get_organizer_user ($organizer_id) {
 	global $wpdb;
