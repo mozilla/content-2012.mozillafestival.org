@@ -89,15 +89,15 @@
 			}
 
 			$external_options = array(
-				'lanyrd.com' => __('Lanyrd page'),
-				'flickr.com' => __('Flickr photos'),
+				'lanyrd.com' => __('<a href="%s">Find or add notes for this session on Lanyrd</a>. Plus session videos, slides, mock-ups, source code, links to photos, etc.'),
+				'flickr.com' => __('<a href="%s">Flickr photos</a>'),
 			);
 			$external_links = array();
 
 			foreach ($external_options as $key => $label) {
 				$link = get_post_meta(get_the_ID(), $key, true);
 				if ($link) {
-					$external_links[] = '<a href="' . $link . '">' . $label . '</a>';
+					$external_links[] = sprintf($label, $link);
 				}
 			}
 

@@ -15,7 +15,10 @@ if (have_posts()) {
 	// echo '<pre>'.print_r($term,1).'</pre>';
 	echo '<h2><a href="'.site_url($taxonomy->rewrite['slug']).'/">'.$taxonomy->label.'</a> &raquo; '.$term->name.'</h2>';
 	if ($term->description) {
-		echo '<p class="intro">'.nl2br($term->description).'</p>';
+		echo '<div class="intro">';
+		echo apply_filters('the_content', $term->description);
+		echo '</div>';
+		// echo '<p class="intro">'.nl2br($term->description).'</p>';
 	}
 	while (have_posts()) {
 		the_post();
