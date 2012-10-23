@@ -400,16 +400,22 @@ function mf2012_update_user ($user_id) {
 		$url = sprintf('https://api.twitter.com/1/users/profile_image?screen_name=%s&size=original', $_REQUEST['twitter']);
 
 		try {
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_NOBODY, 1);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_exec($ch);
-			$info = curl_getinfo($ch);
-			curl_close($ch);
+			$headers = get_headers($url,1);
 
-			if (isset($info['redirect_url'])) {
-				$avatar = $info['redirect_url'];
+			if (isset($headers['Location'])) {
+				$avatar = $headers['Location'];
+			} else if (function_exists('curl_init')) {
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $url);
+				curl_setopt($ch, CURLOPT_NOBODY, 1);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_exec($ch);
+				$info = curl_getinfo($ch);
+				curl_close($ch);
+
+				if (isset($info['redirect_url'])) {
+					$avatar = $info['redirect_url'];
+				}
 			}
 		} catch (Exception $e) {
 			// Ignore
