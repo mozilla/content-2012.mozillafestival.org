@@ -596,13 +596,19 @@ function mf2012_include_styles () {
 		$min = '';
 	}
 
+	$matches = array(
+		'home-live' => 'home',
+	);
+
 	if (is_404()) {
 		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/media/css/404'.$min.'.css">'."\n";
 	} else if ($post) {
-		foreach (array($post->post_type, $post->post_name) as $name) {
-			if ($stylesheet = locate_template('media/css/'.$name.$min.'.css')) {
-				$relative_path = substr($stylesheet, strlen(get_template_directory()));
-				echo '<link rel="stylesheet" href="' . get_template_directory_uri() . $relative_path . '">'."\n";
+		foreach (array($post->post_type, $post->post_name, @$matches[$post->post_type], @$matches[$post->post_name]) as $name) {
+			if ($name) {
+				if ($stylesheet = locate_template('media/css/'.$name.$min.'.css')) {
+					$relative_path = substr($stylesheet, strlen(get_template_directory()));
+					echo '<link rel="stylesheet" href="' . str_replace('http://local.mozillafestival.org', '', get_template_directory_uri() . $relative_path) . '">'."\n";
+				}
 			}
 		}
 	}
