@@ -190,6 +190,26 @@ function mf2012_register_sidebars () {
 		'before_title' => "\n\t\t<h2>",
 		'after_title' => "</h2>\n",
 	));
+
+	register_sidebar(array(
+		'id' => 'home-primary',
+		'name' => __('Home (Primary)'),
+		'description' => __('The sidebar used on the home page (reverts to "default")'),
+		'before_widget' => "\t<section id=\"%1\$s\" class=\"widget %2\$s\">\n",
+		'after_widget' => "\n\t</section>\n",
+		'before_title' => "\n\t\t<h2>",
+		'after_title' => "</h2>\n",
+	));
+
+	register_sidebar(array(
+		'id' => 'home-secondary',
+		'name' => __('Home (Secondary)'),
+		'description' => __('Other sidebar content to display on the homepage'),
+		'before_widget' => "\t<section id=\"%1\$s\" class=\"widget %2\$s\">\n",
+		'after_widget' => "\n\t</section>\n",
+		'before_title' => "\n\t\t<h2>",
+		'after_title' => "</h2>\n",
+	));
 }
 
 add_action('widgets_init', 'mf2012_register_sidebars');
