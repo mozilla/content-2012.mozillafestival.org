@@ -145,7 +145,7 @@ class MF_Widget_Twitter extends WP_Widget {
 		if ($items < 1 || $items > 10)
 			$items = 10;
 
-		if (true || $validate_feed) {
+		if ($validate_feed) {
 			$rss = fetch_feed($url);
 			if (is_wp_error($rss)) {
 				$error = $rss->get_error_message();
@@ -184,7 +184,7 @@ class MF_Widget_Twitter extends WP_Widget {
 			$items = 10;
 
 		echo '<p><label for="twitter-title-'.$number.'">Title (optional):</label>';
-		echo '<input class="widefat" type="text" name="widget-twitter['.$number.'][set_title]" value="'.$set_title.'" placeholder="'.$default_title.'"></p>';
+		echo '<input class="widefat" type="text" name="widget-twitter['.$number.'][set_title]" value="'.$set_title.'" id="twitter-title-'.$number.'" placeholder="'.$default_title.'"></p>';
 		if ($show_type) {
 			echo '<p><label>Input type: <select name="widget-twitter['.$number.'][type]">';
 			foreach (self::$TYPES as $type_name => $type_label) {
