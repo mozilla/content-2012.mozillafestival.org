@@ -121,9 +121,9 @@ class MF_Widget_Twitter extends WP_Widget {
 			$tweet = esc_html(str_replace(array("\n", "\r"), ' ', esc_attr(strip_tags(@html_entity_decode($item->get_description(), ENT_QUOTES, get_option('blog_charset'))))));
 			$tweet = trim(preg_replace('/^'.preg_quote($strip, '/').'/', '', $tweet));
 
-			$tweet = preg_replace('#(https?://.*)(\s|$)#', '<a href="$1" rel="nofollow">$1</a>', $tweet);
+			$tweet = preg_replace('#(https?://.*?)(\s|$)#', '<a href="$1" rel="nofollow">$1</a>', $tweet);
 			$tweet = preg_replace('/@(\w+)(\b)/', '<a href="https://twitter.com/$1" rel="nofollow">@$1</a>$2', $tweet);
-			$tweet = preg_replace('/(\s)#(\w+)(\s|$)/', '$1<a href="https://twitter.com/search/?q=%23$2" rel="nofollow">#$2</a>$3', $tweet);
+			$tweet = preg_replace('/(\s)#(\w+)(\b)/', '$1<a href="https://twitter.com/search/?q=%23$2" rel="nofollow">#$2</a>$3', $tweet);
 
 			echo '<li>'.$tweet.' <a href="'.$link.'" class="link">&rarr;</a></li>';
 		}
