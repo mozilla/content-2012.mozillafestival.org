@@ -23,21 +23,18 @@
 		if (!empty($header)) {
 			echo '<p class="meta">' . implode(' | ', $header) . '</p>';
 		}
-	?>
-	</header>
-	<div class="description">
-		<?php if (is_single()) { the_content(); } else { the_excerpt(); } ?>
-	</div>
-	<?php
+
 		if (is_single()) {
 			$meta = array(
 				'up-to-date' => (object) array(
-					'label' => __('Stay up to date'),
+					'label' => null,
 					'items' => array(),
+					'location' => 'top',
 				),
 				'more' => (object) array(
-					'label' => __('More about this session'),
+					'label' => __('Notes and assets for this session'),
 					'items' => array(),
+					'location' => 'bottom',
 				)
 			);
 
@@ -67,6 +64,7 @@
 			$organizers = get_the_terms(get_the_ID(), 'organizer');
 			$organizer_output = array();
 			if (!empty($organizers)) {
+				$simple = ' simple';
 				foreach ($organizers as $organizer) {
 					@$index ++;
 					$user = get_organizer_user($organizer);
@@ -80,12 +78,13 @@
 							$website_display = parse_url($website, PHP_URL_HOST);
 							$user_meta[] = '<a href="' . $website . '">' . $website_display . '</a>';
 						}
+						if (count($organizers) > 1 && count($user_meta) > 1) $simple = '';
 						$organizer_output[] = '<li class="vcard organizer-' . $index . '">' . implode(' | ', $user_meta) . '</li>';
 					} else {
 						$organizer_output[] = '<li class="vcard organizer-' . $index . '"><a href="' . $link . '" class="url fn">' . $organizer->name . ' '  . get_avatar(0, 120) . '</a></li>';
 					}
 				}
-				$meta['up-to-date']->items[] = '<p>Organized by:</p><ul class="organizers">' . implode('', $organizer_output) . '</ul>';
+				$meta['up-to-date']->items[] = '<p class="'.trim($simple).'">Organized by:</p><ul class="organizers'.$simple.'">' . implode('', $organizer_output) . '</ul>';
 			}
 
 			$external_options = array(
@@ -106,16 +105,39 @@
 			}
 
 			foreach ($meta as $section => $info) {
-				if (count($info->items)) {
+				if ($info->location == 'top' && count($info->items)) {
 					echo '<section class="' . $section . '">';
-					echo '<h3>' . $info->label . '</h3>';
+					if (!is_null($info->label)) {
+						echo '<h3>' . $info->label . '</h3>';
+					}
 					foreach ($info->items as $item) {
 						echo $item;
 					}
 					echo '</section>';
 				}
-			}		
-		?>
+			}
+
+		}
+	?>
+	</header>
+	<div class="description">
+		<?php if (is_single()) { the_content(); } else { the_excerpt(); } ?>
+	</div>
+	<?php
+	if (is_single()) {
+		foreach ($meta as $section => $info) {
+			if ($info->location == 'bottom' && count($info->items)) {
+				echo '<section class="' . $section . '">';
+				if (!is_null($info->label)) {
+					echo '<h3>' . $info->label . '</h3>';
+				}
+				foreach ($info->items as $item) {
+					echo $item;
+				}
+				echo '</section>';
+			}
+		}
+	?>
 	<aside class="share">
 		<h3>Share this session</h3>
 		<ul>

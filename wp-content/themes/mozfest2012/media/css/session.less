@@ -58,9 +58,13 @@ body.single {
 		}
 
 		article section {
-			margin-top: 35px;
-			padding-top: 35px;
+			margin-top: 4em;
+			padding-top: 2em;
 			border-top: solid 1px #D5DBDB;
+
+			p.simple {
+				display: inline-block;
+			}
 
 			ul {
 				list-style: square;
@@ -70,7 +74,38 @@ body.single {
 				li {
 					margin-top: 0.5em;
 				}
+
+				&.simple {
+					padding: 0;
+					list-style: none;
+					display: inline-block;
+
+					li {
+						margin: 0 0 0 0.5em;
+						padding: 0;
+						display: inline;
+						white-space: normal;
+
+						&:nth-child(n)::after {
+							content: ",";
+							position: relative;
+							left: -0.15em;
+						}
+
+						&:last-child::after {
+							content: "";
+						}
+					}
+				}
 			}
+		}
+
+		article header section {
+			margin-top: 0;
+			padding-top: 0;
+			padding-bottom: 25px;
+			border-top: none;
+			border-bottom: solid 1px #D5DBDB;
 		}
 	}
 }
