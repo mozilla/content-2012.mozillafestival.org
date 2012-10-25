@@ -2,6 +2,7 @@
 
 require_once(dirname(__FILE__).'/admin/widgets.php');
 require_once(dirname(__FILE__).'/admin/meta-boxes.php');
+require_once(dirname(__FILE__).'/admin/custom-header-options.php');
 
 function mf2012_empty_function () {
 	// Do nothing
