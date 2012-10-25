@@ -10,3 +10,4 @@ body.single #content-inner article section ul{list-style:square;margin:0;padding
 body.single #content-inner article section ul.simple{padding:0;list-style:none;display:inline-block;}body.single #content-inner article section ul.simple li{margin:0 0 0 0.5em;padding:0;display:inline;white-space:normal;}body.single #content-inner article section ul.simple li:nth-child(n)::after{content:",";position:relative;left:-0.15em;}
 body.single #content-inner article section ul.simple li:last-child::after{content:"";}
 body.single #content-inner article header section{margin-top:0;padding-top:0;padding-bottom:25px;border-top:none;border-bottom:solid 1px #D5DBDB;}
+body.single #content-inner article header p{margin-top:0;}
