@@ -487,6 +487,13 @@ function mf2012_update_user ($user_id) {
 	} else {
 		delete_user_meta($user_id, 'avatar');
 	}
+
+	if ($organizer_id = get_user_meta($user_id, 'organizer_id', true)) {
+		wp_update_term($organizer_id, 'organizer', array(
+			'name' => $_REQUEST['display_name'],
+			'description' => $_REQUEST['description'],
+		));
+	}
 }
 
 add_action('edit_user_profile_update', 'mf2012_update_user');
