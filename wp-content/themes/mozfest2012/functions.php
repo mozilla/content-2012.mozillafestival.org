@@ -247,7 +247,7 @@ function __mf2012_autolink_callback ($matches) {
 
 	preg_match('/^(.*?)(\{.+\})(.*?)$/', $label, $meta);
 	if ($meta) {
-		$label = $meta[1] . $meta[2];
+		$label = trim($meta[1] . $meta[3]);
 		$meta = $meta[2];
 	} else {
 		$meta = '{}';
@@ -275,7 +275,7 @@ function __mf2012_autolink_callback ($matches) {
 	}
 	$attrs = implode($attrs);
 
-	if (preg_match('/\.(jpg|png|gif)$/', $link)) {
+	if (empty($label) && preg_match('/\.(jpg|png|gif)$/', $link)) {
 		return '<img src="'.$link.'"'.$attrs.'>';
 	} else {
 		return '<a href="'.$link.'"'.$attrs.'>'.$label.'</a>';
@@ -288,6 +288,7 @@ function mf2012_autolink ($str) {
 
 function mf2012_autop ($str, $br=1) {
 	if (get_post_type() === 'session') {
+		$str = htmlentities($str, ENT_COMPAT, 'UTF-8', false);
 		$str = mf2012_autolink($str);
 		$str = preg_replace('|^\s*\*\s*(.*?)\s*$|m', '<li>$1</li>', $str);
 		$str = wpautop($str, $br);
