@@ -240,15 +240,45 @@ function __mf2012_autolink_callback ($matches) {
 	if ($open == '[' && $close == ']') {
 		$label = trim($before) . trim($after);
 	} else {
-		if (preg_match('/\.(jpg|png|gif)$/', $link)) {
-			return '<img src="'.$link.'" style="max-width: 100%;">';
-		} else {
-			$label = preg_replace('|^https?://|', '', $link);
-			$label = preg_replace('|/$|', '', $label);
-		}
+		$label = preg_replace('|^https?://|', '', $link);
+		$label = preg_replace('|/$|', '', $label);
 	}
 
-	return '<a href="'.$link.'">'.$label.'</a>';
+	preg_match('/^(.*?)(\{.+\})(.*?)$/', $label, $meta);
+	if ($meta) {
+		$label = $meta[1] . $meta[2];
+		$meta = $meta[2];
+	} else {
+		$meta = '{}';
+	}
+
+	$meta = @json_decode($meta);
+	$attributes = array();
+
+	foreach ((object) $meta as $key => $value) {
+		if (is_array($value)) {
+			$value = implode(', ', $value);
+		} else if (is_object($value)) {
+			$attr = array();
+			foreach ($value as $k => $v) {
+				$attr[] = $k . ': ' . $v . ';';
+			}
+			$value = implode(' ', $attr);
+		}
+		$attributes[$key] = $value;
+	}
+
+	$attrs = array();
+	foreach ($attributes as $attribute => $value) {
+		$attrs[] = ' ' . $attribute . '="' . $value . '"';
+	}
+	$attrs = implode($attrs);
+
+	if (preg_match('/\.(jpg|png|gif)$/', $link)) {
+		return '<img src="'.$link.'"'.$attrs.'>';
+	} else {
+		return '<a href="'.$link.'"'.$attrs.'>'.$label.'</a>';
+	}
 }
 
 function mf2012_autolink ($str) {
