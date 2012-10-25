@@ -471,6 +471,15 @@ function mf2012_update_user ($user_id) {
 		} catch (Exception $e) {
 			// Ignore
 		}
+
+		$bio = $_REQUEST['description'];
+		if (empty($bio)) {
+			$info = @json_decode(file_get_contents('https://api.twitter.com/1/users/show.json?screen_name='.$_REQUEST['twitter']));
+			if (!empty($info)) {
+				$_POST['description'] = $info->description;
+				$_REQUEST['description'] = $info->description;
+			}
+		}
 	}
 
  	if (!is_null($avatar)) {
