@@ -1,6 +1,8 @@
 <?php
 
 require_once(dirname(__FILE__).'/admin/widgets.php');
+require_once(dirname(__FILE__).'/admin/meta-boxes.php');
+require_once(dirname(__FILE__).'/admin/custom-header-options.php');
 
 function mf2012_empty_function () {
 	// Do nothing
@@ -189,6 +191,26 @@ function mf2012_register_sidebars () {
 		'before_title' => "\n\t\t<h2>",
 		'after_title' => "</h2>\n",
 	));
+
+	register_sidebar(array(
+		'id' => 'home-primary',
+		'name' => __('Home (Primary)'),
+		'description' => __('The sidebar used on the home page (reverts to "default")'),
+		'before_widget' => "\t<section id=\"%1\$s\" class=\"widget %2\$s\">\n",
+		'after_widget' => "\n\t</section>\n",
+		'before_title' => "\n\t\t<h2>",
+		'after_title' => "</h2>\n",
+	));
+
+	register_sidebar(array(
+		'id' => 'home-secondary',
+		'name' => __('Home (Secondary)'),
+		'description' => __('Other sidebar content to display on the homepage'),
+		'before_widget' => "\t<section id=\"%1\$s\" class=\"widget %2\$s\">\n",
+		'after_widget' => "\n\t</section>\n",
+		'before_title' => "\n\t\t<h2>",
+		'after_title' => "</h2>\n",
+	));
 }
 
 add_action('widgets_init', 'mf2012_register_sidebars');
@@ -219,15 +241,45 @@ function __mf2012_autolink_callback ($matches) {
 	if ($open == '[' && $close == ']') {
 		$label = trim($before) . trim($after);
 	} else {
-		if (preg_match('/\.(jpg|png|gif)$/', $link)) {
-			return '<img src="'.$link.'" style="max-width: 100%;">';
-		} else {
-			$label = preg_replace('|^https?://|', '', $link);
-			$label = preg_replace('|/$|', '', $label);
-		}
+		$label = preg_replace('|^https?://|', '', $link);
+		$label = preg_replace('|/$|', '', $label);
 	}
 
-	return '<a href="'.$link.'">'.$label.'</a>';
+	preg_match('/^(.*?)(\{.+\})(.*?)$/', $label, $meta);
+	if ($meta) {
+		$label = trim($meta[1] . $meta[3]);
+		$meta = $meta[2];
+	} else {
+		$meta = '{}';
+	}
+
+	$meta = @json_decode($meta);
+	$attributes = array();
+
+	foreach ((object) $meta as $key => $value) {
+		if (is_array($value)) {
+			$value = implode(', ', $value);
+		} else if (is_object($value)) {
+			$attr = array();
+			foreach ($value as $k => $v) {
+				$attr[] = $k . ': ' . $v . ';';
+			}
+			$value = implode(' ', $attr);
+		}
+		$attributes[$key] = $value;
+	}
+
+	$attrs = array();
+	foreach ($attributes as $attribute => $value) {
+		$attrs[] = ' ' . $attribute . '="' . $value . '"';
+	}
+	$attrs = implode($attrs);
+
+	if (empty($label) && preg_match('/\.(jpg|png|gif)$/', $link)) {
+		return '<img src="'.$link.'"'.$attrs.'>';
+	} else {
+		return '<a href="'.$link.'"'.$attrs.'>'.$label.'</a>';
+	}
 }
 
 function mf2012_autolink ($str) {
@@ -236,6 +288,7 @@ function mf2012_autolink ($str) {
 
 function mf2012_autop ($str, $br=1) {
 	if (get_post_type() === 'session') {
+		$str = htmlentities($str, ENT_COMPAT, 'UTF-8', false);
 		$str = mf2012_autolink($str);
 		$str = preg_replace('|^\s*\*\s*(.*?)\s*$|m', '<li>$1</li>', $str);
 		$str = wpautop($str, $br);
@@ -400,19 +453,34 @@ function mf2012_update_user ($user_id) {
 		$url = sprintf('https://api.twitter.com/1/users/profile_image?screen_name=%s&size=original', $_REQUEST['twitter']);
 
 		try {
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_NOBODY, 1);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_exec($ch);
-			$info = curl_getinfo($ch);
-			curl_close($ch);
+			$headers = get_headers($url,1);
 
-			if (isset($info['redirect_url'])) {
-				$avatar = $info['redirect_url'];
+			if (isset($headers['Location'])) {
+				$avatar = $headers['Location'];
+			} else if (function_exists('curl_init')) {
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $url);
+				curl_setopt($ch, CURLOPT_NOBODY, 1);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_exec($ch);
+				$info = curl_getinfo($ch);
+				curl_close($ch);
+
+				if (isset($info['redirect_url'])) {
+					$avatar = $info['redirect_url'];
+				}
 			}
 		} catch (Exception $e) {
 			// Ignore
+		}
+
+		$bio = $_REQUEST['description'];
+		if (empty($bio)) {
+			$info = @json_decode(file_get_contents('https://api.twitter.com/1/users/show.json?screen_name='.$_REQUEST['twitter']));
+			if (!empty($info)) {
+				$_POST['description'] = $info->description;
+				$_REQUEST['description'] = $info->description;
+			}
 		}
 	}
 
@@ -420,6 +488,13 @@ function mf2012_update_user ($user_id) {
 		update_user_meta($user_id, 'avatar', $avatar);
 	} else {
 		delete_user_meta($user_id, 'avatar');
+	}
+
+	if ($organizer_id = get_user_meta($user_id, 'organizer_id', true)) {
+		wp_update_term($organizer_id, 'organizer', array(
+			'name' => $_REQUEST['display_name'],
+			'description' => $_REQUEST['description'],
+		));
 	}
 }
 
@@ -599,10 +674,15 @@ function mf2012_include_styles () {
 	if (is_404()) {
 		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/media/css/404'.$min.'.css">'."\n";
 	} else if ($post) {
-		foreach (array($post->post_type, $post->post_name) as $name) {
-			if ($stylesheet = locate_template('media/css/'.$name.$min.'.css')) {
-				$relative_path = substr($stylesheet, strlen(get_template_directory()));
-				echo '<link rel="stylesheet" href="' . get_template_directory_uri() . $relative_path . '">'."\n";
+		$search = array($post->post_type, $post->post_name);
+		if (is_front_page()) $search[] = 'home';
+
+		foreach (array_unique($search) as $name) {
+			if ($name) {
+				if ($stylesheet = locate_template('media/css/'.$name.$min.'.css')) {
+					$relative_path = substr($stylesheet, strlen(get_template_directory()));
+					echo '<link rel="stylesheet" href="' . str_replace('http://local.mozillafestival.org', '', get_template_directory_uri() . $relative_path) . '">'."\n";
+				}
 			}
 		}
 	}
