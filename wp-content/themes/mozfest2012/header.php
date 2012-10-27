@@ -18,7 +18,7 @@
 				<nav>
 					<input type="checkbox" role="presentation" id="show-navigation">
 					<ul class="menu menu-count-<?php echo mf2012_menu_meta('header')->count + 1; ?>">
-						<li class="register"><a href="https://donate.mozilla.org/page/contribute/mozfest2012-registration" class="button">Register Now</a></li>
+						<li class="register"><a href="<?php echo esc_attr( get_theme_mod( 'mf2012_header_button_target' ) ); ?>" class="button"><?php echo esc_attr( get_theme_mod( 'mf2012_header_button_label' ) ); ?></a></li>
 						<?php
 							if (has_nav_menu('header')) {
 								wp_nav_menu(array(
