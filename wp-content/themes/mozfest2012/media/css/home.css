@@ -89,3 +89,14 @@ ul.bullets li.with::before {
 	background-color: rgba(0, 0, 0, 0.25);
 }
 
+#livestream {
+	margin-top: -7.5em;
+}
+
+@media screen and (max-width: 699px) {
+	#livestream {
+	  margin-top: 0;
+	}
+
+}
+

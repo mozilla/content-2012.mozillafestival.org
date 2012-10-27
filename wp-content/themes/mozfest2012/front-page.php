@@ -2,13 +2,8 @@
 
 get_header();
 
-if (function_exists('get_custom_header')) {
-	$header = get_custom_header();
-	$header_text = get_post($header->attachment_id)->post_title;
-	$header_color = get_header_textcolor();
-	if (!empty($header_text) && $header_color !== 'blank') {
-		echo '<div id="carousel"><div class="constrained"></div></div>'."\n";
-	}
+if (get_header_image()) {
+	echo '<div id="carousel"><div class="constrained"></div></div>'."\n";
 }
 
 ?>
