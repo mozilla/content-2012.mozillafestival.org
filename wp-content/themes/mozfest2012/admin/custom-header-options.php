@@ -2,7 +2,7 @@
 
 function mf2012_header_button_defaults($label=null, $target=null) {
 	return (object) array(
-		'label' => empty($label) ? 'Register Now' : $label,
+		'label' => empty($label) ? '' : $label,
 		'target' => empty($target) ? 'https://donate.mozilla.org/page/contribute/mozfest2012-registration' : $target,
 	);
 }
@@ -14,7 +14,7 @@ function mf2012_custom_header_options() {
 <table class="form-table">
 	<tbody>
 		<tr valign="top">
-			<th scope="row"><?php _e('Label:'); ?></th>
+			<th scope="row"><?php _e('Label (leave empty to remove the button):'); ?></th>
 			<td><p><input type="text" name="mf2012_header_button_label" value="<?php echo esc_attr(get_theme_mod('mf2012_header_button_label', $defaults->label)); ?>"></p></td>
 		</tr>
 		<tr valign="top" class="hide-if-no-js">
