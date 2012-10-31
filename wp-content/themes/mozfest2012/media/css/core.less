@@ -129,6 +129,33 @@ img.alignright {
 	margin: 0 0 0 1em;
 }
 
+body.blog h3 {
+    margin-bottom: 1em;
+    padding-top: 1em;
+    border-top: @nav-border;
+}
+
+body.blog article:first-child h3 {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body.blog img,
+body.single-post img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+    display: block;
+}
+
+body.blog img.alignleft,
+body.single-post img.alignright {
+    width: auto;
+    display: inline-block;
+    margin: 0 0 0 1em;
+}
+
 section section {
 	overflow: hidden;
 	margin-bottom: 2em;
