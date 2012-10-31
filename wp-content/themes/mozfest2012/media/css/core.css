@@ -129,12 +129,12 @@ img.alignright {
   float: right;
   margin: 0 0 0 1em;
 }
-body.blog #content-inner h3 {
+body.blog #content-inner .blog-title {
   margin-bottom: 1em;
   padding-top: 1em;
   border-top: 1px solid #E5E5E6;
 }
-body.blog #content-inner article:first-child h3 {
+body.blog #content-inner article:first-child .blog-title {
   border-top: none;
   margin-top: 0;
   padding-top: 0;
