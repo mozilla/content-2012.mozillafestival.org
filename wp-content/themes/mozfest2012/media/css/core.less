@@ -164,9 +164,17 @@ body.tag #content-inner img.alignleft,
 body.tag #content-inner img.alignright {
     width: auto;
     display: inline-block;
-    margin: 0 0 0 1em;
 }
-
+body.blog #content-inner img.alignleft,
+body.single-post #content-inner img.alignleft,
+body.tag #content-inner img.alignleft {
+	margin-right: 10px;
+}
+body.blog #content-inner img.alignright,
+body.single-post #content-inner img.alignright,
+body.tag #content-inner img.alignright {
+	margin-left: 10px;
+}
 section section {
 	overflow: hidden;
 	margin-bottom: 2em;
