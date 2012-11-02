@@ -85,6 +85,10 @@ a {
 body.archive article {
 	margin-top: 50px;
 }
+/* revert the big top margin for tag archives */
+body.tag article {
+	margin-top: 0;
+}
 
 article header {
 	margin-bottom: 25px;
@@ -129,20 +133,23 @@ img.alignright {
 	margin: 0 0 0 1em;
 }
 
-body.blog #content-inner h3 {
+body.blog #content-inner h3,
+body.tag #content-inner h3 {
     margin-bottom: 1em;
     padding-top: 1em;
     border-top: @nav-border;
 }
 
-body.blog #content-inner article:first-child h3 {
+body.blog #content-inner article:first-child h3,
+body.tag #content-inner h2 + article h3 {
     border-top: none;
     margin-top: 0;
     padding-top: 0;
 }
 
 body.blog #content-inner img,
-body.single-post #content-inner img {
+body.single-post #content-inner img
+body.tag #content-inner img {
     width: 100%;
     height: auto;
     margin-bottom: 1em;
@@ -150,7 +157,11 @@ body.single-post #content-inner img {
 }
 
 body.blog #content-inner img.alignleft,
-body.single-post #content-inner img.alignright {
+body.blog #content-inner img.alignright,
+body.single-post #content-inner img.alignleft,
+body.single-post #content-inner img.alignright,
+body.tag #content-inner img.alignleft,
+body.tag #content-inner img.alignright {
     width: auto;
     display: inline-block;
     margin: 0 0 0 1em;
