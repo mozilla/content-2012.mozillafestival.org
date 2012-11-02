@@ -5,4 +5,7 @@
         <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
     <?php endif; ?>
     <?php the_content(); ?>
+     <?php if (is_single()): ?>
+        <?php the_tags('<p><strong>Tagged:</strong> ', ', ', '</p>'); ?>
+    <?php endif; ?>
 </article>
