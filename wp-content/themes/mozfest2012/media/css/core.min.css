@@ -13,6 +13,7 @@ p.intro,li.intro{font-size:1.38em;}
 p.intro-large,li.intro-large{font-size:1.85em;margin:0 0 1em;}
 a{color:#279dd4;text-decoration:none;}
 body.archive article{margin-top:50px;}
+body.tag article{margin-top:0;}
 article header{margin-bottom:25px;}
 aside.more{margin:50px -10px 0;padding:0 10px;overflow:hidden;}aside.more section{margin:20px 20px 0 0;width:140px;float:left;}aside.more section h3{font-size:1.08em;}
 aside.more section ul{margin:0;padding:0 0 10px;list-style:none;}
@@ -20,9 +21,13 @@ aside.more section li.selected a{background:#00283a;color:#EEE;padding:3px 6px;m
 img.alignleft{float:left;margin:0 1em 0 0;}
 img.alignright{float:right;margin:0 0 0 1em;}
 body.blog #content-inner .blog-title{margin-bottom: 1em;padding-top: 1em;border-top: 1px solid #E5E5E6; }
+body.tag #content-inner .blog-title{margin-bottom: 1em;padding-top: 1em;border-top: 1px solid #E5E5E6; }
 body.blog #content-inner article:first-child .blog-title{border-top: none;margin-top: 0;padding-top: 0;}
+body.tag #content-inner h2 + article h3{border-top: none;margin-top: 0;padding-top: 0;}
 body.blog #content-inner img,body.single-post #content-inner img{width: 100%;height: auto;margin-bottom: 1em;display: block;}
-body.blog #content-inner img.alignleft,body.single-post #content-inner img.alignright{width: auto;display: inline-block;margin: 0 0 0 1em;}
+body.blog #content-inner img.alignleft,body.blog #content-inner img.alignright,body.single-post #content-inner img.alignleft,body.single-post #content-inner img.alignright,body.tag #content-inner img.alignleft,body.tag #content-inner img.alignright{width: auto;display: inline-block;}
+body.blog #content-inner img.alignleft,body.body.single-post #content-inner img.alignleft,body.tag #content-inner img.alignleft{margin-right: 10px;}
+body.blog #content-inner img.alignright,body.body.single-post #content-inner img.alignright,body.tag #content-inner img.alignright{margin-left: 10px;}
 section section{overflow:hidden;margin-bottom:2em;}
 pre.template{white-space:pre-wrap;}
 .menu{margin:0;padding:0;list-style:none;}.menu li{width:140px;margin:0 20px 0 0;padding:4px 0;float:left;border-bottom:solid 1px #E5E5E6;}.menu li:nth-last-child(1){border-bottom:none;}
@@ -56,6 +61,7 @@ pre.template{white-space:pre-wrap;}
 #sidebar .widget_twitter li{border-top:solid 1px #E5E5E6;margin-top:1em;padding-top:1em;}#sidebar .widget_twitter li:first-child{border-top:none;margin-top:0;padding-top:0;}
 #sidebar .widget_twitter a.link{display:inline-block;float:right;}
 #sidebar .widget_flickr ul{list-style:none;padding-left:0;margin-bottom:0;}
+#sidebar .widget_flickr li{margin-bottom: 10px;}
 #sidebar .widget_flickr img{display:block;width:100%;}
 #footer{padding-bottom:50px;}#footer .constrained{padding-right:0;max-width:960px;}
 #footer h4{margin:0 0 0.75em;padding-top:50px;font-size:1.08em;}

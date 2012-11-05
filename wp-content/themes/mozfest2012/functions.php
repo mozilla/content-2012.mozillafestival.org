@@ -9,7 +9,7 @@ function mf2012_empty_function () {
 }
 
 function mf2012_alter_taxonomy_archive_posts ($query) {
-	if (!is_admin() && $query->tax_query && count($query->tax_query->queries)) {
+	if (!is_admin() && is_post_type_archive('session') && $query->tax_query && count($query->tax_query->queries)) {
 		$query->query_vars['meta_key'] = 'start';
 		$query->query_vars['orderby'] = 'meta_value';
 		$query->query_vars['order'] = 'ASC';
