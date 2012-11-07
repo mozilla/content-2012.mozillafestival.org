@@ -613,6 +613,9 @@ pre.template {
   padding-left: 0;
   margin-bottom: 0;
 }
+#sidebar .widget_flickr li {
+  margin-bottom: 10px;
+}
 #sidebar .widget_flickr img {
   display: block;
   width: 100%;

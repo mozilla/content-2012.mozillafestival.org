@@ -56,6 +56,7 @@ pre.template{white-space:pre-wrap;}
 #sidebar .widget_twitter li{border-top:solid 1px #E5E5E6;margin-top:1em;padding-top:1em;}#sidebar .widget_twitter li:first-child{border-top:none;margin-top:0;padding-top:0;}
 #sidebar .widget_twitter a.link{display:inline-block;float:right;}
 #sidebar .widget_flickr ul{list-style:none;padding-left:0;margin-bottom:0;}
+#sidebar .widget_flickr li{margin-bottom:10px;}
 #sidebar .widget_flickr img{display:block;width:100%;}
 #footer{padding-bottom:50px;}#footer .constrained{padding-right:0;max-width:960px;}
 #footer h4{margin:0 0 0.75em;padding-top:50px;font-size:1.08em;}

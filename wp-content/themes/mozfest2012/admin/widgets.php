@@ -339,7 +339,7 @@ class MF_Widget_Flickr extends WP_Widget {
 		foreach ($rss->get_items(0, $items) as $item) {
 			if ($enclosure = $item->get_enclosure()) {
 				$src = preg_replace('/_b.jpg$/', '_n.jpg', $enclosure->link);
-				echo '<li><a href="'.$rss->get_link().'"><img src="'.$src.'"></img></li>';
+				echo '<li><a href="'.$rss->get_link().'"><img src="'.$src.'"></img></a></li>';
 			}
 		}
 		echo '</ul>';
