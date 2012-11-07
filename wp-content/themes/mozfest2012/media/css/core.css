@@ -139,7 +139,7 @@ body.tag #content-inner .blog-title {
   border-top: 1px solid #E5E5E6;
 }
 body.blog #content-inner article:first-child .blog-title,
-body.tag #content-inner h2 + article h3 {
+body.tag #content-inner h2 + article .blog-title {
   border-top: none;
   margin-top: 0;
   padding-top: 0;

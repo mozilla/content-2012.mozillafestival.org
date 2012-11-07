@@ -21,7 +21,7 @@ aside.more section li.selected a{background:#00283a;color:#EEE;padding:3px 6px;m
 img.alignleft{float:left;margin:0 1em 0 0;}
 img.alignright{float:right;margin:0 0 0 1em;}
 body.blog #content-inner .blog-title,body.tag #content-inner .blog-title{margin-bottom: 1em;padding-top: 1em;border-top: 1px solid #E5E5E6; }
-body.blog #content-inner article:first-child .blog-title,body.tag #content-inner h2 + article h3{border-top: none;margin-top: 0;padding-top: 0;}
+body.blog #content-inner article:first-child .blog-title,body.tag #content-inner h2 + article .blog-title{border-top: none;margin-top: 0;padding-top: 0;}
 body.blog #content-inner img,body.single-post #content-inner img,body.tag #content-inner img{width: 100%;height: auto;margin-bottom: 1em;display: block;}
 body.blog #content-inner img.alignleft,body.blog #content-inner img.alignright,body.single-post #content-inner img.alignleft,body.single-post #content-inner img.alignright,body.tag #content-inner img.alignleft,body.tag #content-inner img.alignright{width: auto;display: inline-block;}
 body.blog #content-inner img.alignleft,body.body.single-post #content-inner img.alignleft,body.tag #content-inner img.alignleft{margin-right: 10px;}
