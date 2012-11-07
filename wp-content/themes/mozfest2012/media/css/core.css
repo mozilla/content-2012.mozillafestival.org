@@ -145,7 +145,8 @@ body.tag #content-inner h2 + article h3 {
   padding-top: 0;
 }
 body.blog #content-inner img,
-body.single-post #content-inner img {
+body.single-post #content-inner img,
+body.tag #content-inner img {
   width: 100%;
   height: auto;
   margin-bottom: 1em;
