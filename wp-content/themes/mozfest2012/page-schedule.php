@@ -19,39 +19,9 @@ if (have_posts()) {
 	get_template_part('content', 'missing');
 }
 
-?>
-			<aside class="more">
-				<h2>View Sessions by Type</h2>
-				<p class="intro">Learn more about <a href="/schedule/formats/">session formats</a>.</p>
-				<?php get_template_part('taxonomy-more-inner'); ?>
-			</aside>
-
-<?php
-query_posts(array(
-	'post_type' => 'session',
-	'meta_key' => 'start',
-	'orderby' => 'meta_value',
-	'order' => 'ASC',
-	'posts_per_page' => -1,
-));
-
-if (have_posts()) {
-?>
-			<section class="session-list" id="all-sessions">
-				<h2>All Sessions</h2>
-<?php
-	while (have_posts()) {
-		the_post();
-		$type = get_post_format();
-		if (empty($type)) $type = get_post_type();
-		get_template_part('content', $type);
-	}
-}
-
 wp_reset_query();
 
 ?>
-			</section>
 		</div>
 <?php
 
@@ -63,3 +33,5 @@ get_sidebar();
 <?php
 
 get_footer();
+
+?>
