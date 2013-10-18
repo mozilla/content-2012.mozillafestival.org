@@ -287,14 +287,20 @@ function mf2012_autolink ($str) {
 }
 
 function mf2012_autop ($str, $br=1) {
-	if (get_post_type() === 'session') {
+    $post_type = get_post_type();
+
+	if ($post_type === 'session') {
 		$str = htmlentities($str, ENT_COMPAT, 'UTF-8', false);
 		$str = mf2012_autolink($str);
 		$str = preg_replace('|^\s*\*\s*(.*?)\s*$|m', '<li>$1</li>', $str);
 		$str = wpautop($str, $br);
 		$str = preg_replace('|(</p>\s*)(<li>)|', '$1<ul>$2', $str);
 		$str = preg_replace('|(</li>)(\s*<p>)|', '$1</ul>$2', $str);
+	} else if ($post_type === 'post') {
+	    $str = wpautop($str);
 	}
+
+    // Everything else we're returning 'raw'
 	return $str;
 }
 
