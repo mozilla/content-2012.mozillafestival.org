@@ -8,7 +8,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Open Sans', sans-serif;
-	font-size: 13px;
+	font-size: 14px;
 	color: @slate;
 }
 
@@ -129,6 +129,11 @@ img.alignleft {
 	margin: 0 1em 0 0;
 }
 
+img.aligncenter {
+	margin: 0 auto;
+	display: block;
+}
+
 img.alignright {
 	float: right;
 	margin: 0 0 0 1em;
@@ -148,23 +153,40 @@ body.tag #content-inner h2 + article .blog-title {
     padding-top: 0;
 }
 
-body.blog #content-inner img,
-body.single-post #content-inner img,
-body.tag #content-inner img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 1em;
-    display: block;
-}
+body.blog,
+body.single-post,
+body.tag {
+	#content-inner {
+		object,
+		img {
+			max-width: 100%;
+			height: auto;
+			margin-bottom: 1em;
+			display: block;
+		}
 
-body.blog #content-inner img.alignleft,
-body.blog #content-inner img.alignright,
-body.single-post #content-inner img.alignleft,
-body.single-post #content-inner img.alignright,
-body.tag #content-inner img.alignleft,
-body.tag #content-inner img.alignright {
-    width: auto;
-    display: inline-block;
+		img {
+			&.alignnone,
+			&.alignleft,
+			&.aligncenter,
+			&.alignright {
+				width: auto;
+				display: inline-block;
+			}
+
+			&.alignleft {
+				margin-right: 10px;
+			}
+
+			&.aligncenter {
+				display: block;
+			}
+
+			&.alignright {
+				margin-left: 10px;
+			}
+		}
+	}
 }
 
 body.blog #content-inner img.alignleft,

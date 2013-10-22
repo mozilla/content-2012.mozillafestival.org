@@ -34,7 +34,7 @@ function mf2012_alter_taxonomy_archive_posts ($query) {
 	}
 }
 
-add_filter('pre_get_posts', 'mf2012_alter_taxonomy_archive_posts');
+// add_filter('pre_get_posts', 'mf2012_alter_taxonomy_archive_posts');
 
 function mf2012_alter_posts_results ($posts) {
 	if (!is_array($posts)) {
@@ -43,7 +43,7 @@ function mf2012_alter_posts_results ($posts) {
 	return $posts;
 }
 
-add_filter('posts_results', 'mf2012_alter_posts_results');
+// add_filter('posts_results', 'mf2012_alter_posts_results');
 
 function mf2012_fix_sql ($sql) {
 	if (defined('TAXONOMY_ARCHIVE')) {
