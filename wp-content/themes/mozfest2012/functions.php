@@ -178,7 +178,11 @@ if (!function_exists('get_custom_header')) {
 		$custom_header_support['admin-head-callback'],
 		$custom_header_support['admin-preview-callback']
 	);
-	add_custom_background();
+    if (function_exists('add_theme_support')) {
+        add_theme_support('custom-background');
+	} else if (function_exists('add_custom_background')) {
+    	add_custom_background();
+    }
 }
 
 function mf2012_register_sidebars () {
