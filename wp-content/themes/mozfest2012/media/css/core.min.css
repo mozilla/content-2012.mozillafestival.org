@@ -18,9 +18,12 @@ article header{margin-bottom:25px;}
 aside.more{margin:50px -10px 0;padding:0 10px;overflow:hidden;}aside.more section{margin:20px 20px 0 0;width:140px;float:left;}aside.more section h3{font-size:1.08em;}
 aside.more section ul{margin:0;padding:0 0 10px;list-style:none;}
 aside.more section li.selected a{background:#00283a;color:#EEE;padding:3px 6px;margin-left:-6px;}
-img.alignleft{float:left;margin:0 1em 0 0;}
-img.aligncenter{margin:0 auto;display:block;}
-img.alignright{float:right;margin:0 0 0 1em;}
+.wp-caption{background:#F9F9F9;border:solid 1px #EEE;border-radius:5px;padding:10px;box-shadow:1px 1px 1px #FFF;}.wp-caption img{margin:0 auto;}
+.wp-caption .wp-caption-text{font-size:0.8em;text-align:center;}
+img.alignleft,.wp-caption.alignleft{float:left;margin:0 1em 0 0;}
+img.aligncenter,.wp-caption.aligncenter{margin:0 auto;display:block;}
+img.alignright,.wp-caption.alignright{float:right;margin:0 0 0 1em;}
+.wp-caption.alignnone{width:auto !important;}
 body.blog .blog-title,body.tag .blog-title{margin-bottom:1em;padding-top:1em;border-top:solid 1px #E5E5E6;}
 body.blog #content-inner article:first-child .blog-title,body.tag #content-inner h2+article .blog-title{border-top:none;margin-top:0;padding-top:0;}
 body.blog #content-inner object,body.single-post #content-inner object,body.tag #content-inner object,body.blog #content-inner img,body.single-post #content-inner img,body.tag #content-inner img{max-width:100%;height:auto;margin-bottom:1em;display:block;}

@@ -124,19 +124,43 @@ aside.more {
 	}
 }
 
-img.alignleft {
+.wp-caption {
+	background: #F9F9F9;
+	border: solid 1px #EEE;
+	border-radius: 5px;
+	padding: 10px;
+	box-shadow: 1px 1px 1px #FFF;
+
+	img {
+		margin: 0 auto;
+	}
+
+	.wp-caption-text {
+		font-size: 0.8em;
+		text-align: center;
+	}
+}
+
+img.alignleft,
+.wp-caption.alignleft {
 	float: left;
 	margin: 0 1em 0 0;
 }
 
-img.aligncenter {
+img.aligncenter,
+.wp-caption.aligncenter {
 	margin: 0 auto;
 	display: block;
 }
 
-img.alignright {
+img.alignright,
+.wp-caption.alignright {
 	float: right;
 	margin: 0 0 0 1em;
+}
+
+.wp-caption.alignnone {
+	width: auto !important;
 }
 
 body.blog .blog-title,
