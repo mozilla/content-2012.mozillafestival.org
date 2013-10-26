@@ -12,6 +12,9 @@ p.right,li.right,p.buttons,li.buttons{text-align:right;}
 p.intro,li.intro{font-size:1.38em;}
 p.intro-large,li.intro-large{font-size:1.85em;margin:0 0 1em;}
 a{color:#279dd4;text-decoration:none;}
+.page-nav{overflow:hidden;margin-top:3em;}
+.page-nav .previous{float:left;}
+.page-nav .next{float:right;}
 body.archive article{margin-top:50px;}
 body.tag article{margin-top:0;}
 article header{margin-bottom:25px;}
