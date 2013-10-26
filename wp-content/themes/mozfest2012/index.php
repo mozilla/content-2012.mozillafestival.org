@@ -15,6 +15,14 @@ if (have_posts()) {
 		if (empty($type)) $type = get_post_type();
 		get_template_part('content', $type);
 	}
+
+?>
+<div class="page-nav">
+    <div class="previous"><?php next_posts_link('&laquo; Older posts'); ?></div>
+    <div class="next"><?php previous_posts_link('Newer posts &raquo;'); ?></div>
+</div>
+<?php
+
 } else {
 	get_template_part('content', 'missing');
 }
